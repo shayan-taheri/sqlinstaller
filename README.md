@@ -12,7 +12,8 @@ with a relational database management system (RDBMS). It supports a wide range o
 * SQLite
 * Teradata
 
-# SQL Installer.NET Guide
+
+# Table of Contents
 
 * __Chapter 1 – Development__
    * __Database Version Management__
@@ -26,9 +27,8 @@ with a relational database management system (RDBMS). It supports a wide range o
 * __Appendix A: Configuration File Reference__
 * __Appendix B: Adding/Customizing Data Providers__
 
-# Chapter 1 – Development
 
-## Database Version Management
+# Chapter 1 – Development
 
 First, you should break down your database into its component pieces (tables, views, etc.) and place them into your source code repository. 
 The preferred breakdown is a file-per-object. You wouldn't create one large C# source file with all of your classes would you? Most development 
@@ -96,7 +96,7 @@ END;
 /
 ```
 
-> __Note:__ Forward slash must be at the end of the line or by itself on a separate line
+> __Note:__ For the Oracle and DB2 providers only, the forward slash (/) must be at the end of the line or by itself on a separate line
 
 ## Database vs User/Schema
 
@@ -122,17 +122,16 @@ and command-line parameters. By default it will look for a file called _SQLInsta
 all parameters on the command line and forego the need for the XML file completely. If the XML file is present and you specify command-line 
 parameters, then the command-line parameters will override any values present in the XML file. 
 
-|| Parameter || Alt || Description || Example ||
-| /ConnectionString | /conn | The database connection string | /conn="Data Source=localhost;Integrated Security=SSPI" |
-| /Database | /d | The name of the database to create or upgrade | /d=MyDatabase |
-| /InstallPath | /ins | The relative path to the directory containing the install scripts | /inst="." |
-| /FileTypes| /f | A comma separated list of the name and order of file types used during execution | /f="Table,View,StoredProcedure" |
-| /NoPrompt | /nop | Do not prompt for upgrade | /nop |
-| /Options | /o | Runtime options (see configuration file reference below for values) | /o="Retry,Verbose" |
-| /Provider | /p | The data provider to use (SqlServer,Oracle,PostGres,DB2,FireBird,MySQL,SQLite,Teradata) | /p=Oracle |
-| /ScriptExtension | /ext | The extension to use for the SQL scripts (defaults to sql) | /ext=txt |
-| /UpgradePath | /upg | The relative path to the directory containing the upgrade scripts | /upg="..\Upgrade" |
-| /WriteConfig | /w | Writes the configuration values to the XML file | /w |
+* /ConnectionString | /conn - The database connection string (e.g. /conn="Data Source=localhost;Integrated Security=SSPI")
+* /Database | /d - The name of the database to create or upgrade (e.g. /d=MyDatabase)
+* /InstallPath | /ins - The relative path to the directory containing the install scripts (e.g. /inst=".")
+* /FileTypes| /f - A comma separated list of the name and order of file types used during execution (e.g. /f="Table,View,StoredProcedure")
+* /NoPrompt | /nop - Do not prompt for upgrade
+* /Options | /o - Runtime options (see configuration file reference below for values) (e.g. /o="Retry,Verbose")
+* /Provider | /p - The data provider to use (SqlServer,Oracle,PostGres,DB2,FireBird,MySQL,SQLite,Teradata) (e.g. /p=Oracle)
+* /ScriptExtension | /ext - The extension to use for the SQL scripts (defaults to sql) (e.g. /ext=txt)
+* /UpgradePath | /upg - The relative path to the directory containing the upgrade scripts (e.g. /upg="..\Upgrade")
+* /WriteConfig | /w - Writes the configuration values to the XML file
 
 ## Install
 
@@ -166,20 +165,20 @@ __Options__ - specify which options are in effect.
 * Verbose – output all status messages
 * ExitCode - sets the process exit code (errorLevel) for SQL errors 
 
-__IsProtected__ - specify whether or not the ConnectionString property has been encrypted
-__NoPrompt__ - do not prompt user to upgrade (automatically approve)
-__ScriptExtension__ - The file extension used for your script files
-__InstallPath__ - The root path (relative to this file) where the install scripts are located
-__UpgradePath__ - The root path (relative to this file) where the upgrade scripts are located
-__Database__ - name of the database to install/upgrade
-__Provider__ – Set _Name_ attribute to one of standard or custom data providers: __SqlServer|Oracle|PostGres|DB2|FireBird|MySQL|SQLite|Teradata__
-__ConnectionString__ – ADO.NET connection string
+* __IsProtected__ - specify whether or not the ConnectionString property has been encrypted
+* __NoPrompt__ - do not prompt user to upgrade (automatically approve)
+* __ScriptExtension__ - The file extension used for your script files
+* __InstallPath__ - The root path (relative to this file) where the install scripts are located
+* __UpgradePath__ - The root path (relative to this file) where the upgrade scripts are located
+* __Database__ - name of the database to install/upgrade
+* __Provider__ – Set _Name_ attribute to one of standard or custom data providers: __SqlServer|Oracle|PostGres|DB2|FireBird|MySQL|SQLite|Teradata__
+* __ConnectionString__ – ADO.NET connection string
 
-__FileTypes__ – A list of file types to process
-__Name__ - The root name of the file type. This is used in conjunction with the ScriptExtension attribute to construct a search filter
-__IsDisabled__ - Toggles processing of these file types on and off.
-__IsGlobal__ - Run scripts in the global database context
-__HaltOnError__ - Exit completely if any error occurs 
+* __FileTypes__ – A list of file types to process
+* __Name__ - The root name of the file type. This is used in conjunction with the ScriptExtension attribute to construct a search filter
+* __IsDisabled__ - Toggles processing of these file types on and off.
+* __IsGlobal__ - Run scripts in the global database context
+* __HaltOnError__ - Exit completely if any error occurs 
 
 # Appendix B: Adding/Customizing Data Providers
 ----
