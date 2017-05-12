@@ -37,7 +37,7 @@ _source_ SQL scripts (DDL, DML) that now reside in your source control repositor
 assembly or executable on a build server. The goal is to make the creation of your databases consistent, deterministic, and repeatable. 
 The _SQL Installer.NET_ toolset employs a fairly straightforward ‘file structure’ based processing algorithm to ensure that you meet these goals. 
 
-There’s nothing special about the structure. It simply establishes the convention by which SQL Installer.NET will operate. 
+> There’s nothing special about the structure. It simply establishes the convention by which SQL Installer.NET will operate. 
 
 ## Script Folder Layout
 
@@ -51,7 +51,8 @@ last folder which would become the current release (03.00 in the example here):
    * 02.10
    * 03.00
 
-> _SQL Installer.NET_ uses a default naming convention to differentiate between the different types of SQL objects (which can be overridden)
+> Once the database is broken down into its separate pieces each in their own source file and into the hierarchy as illustrated, you would then 
+> check these into source control.
 
 ## Script Extensions
 
@@ -64,8 +65,7 @@ last folder which would become the current release (03.00 in the example here):
 7. PostInstall.sql - Anything needed post installation (e.g. bootstrap data)
 8. ForeignKey.sql
 
-> Once the database is broken down into its separate pieces each in their own source file and into the hierarchy as illustrated, you would then 
-> check these into source control.
+> _SQL Installer.NET_ uses a default naming convention to differentiate between the different types of SQL objects (which can be overridden)
  
 ## Script Formatting
 
