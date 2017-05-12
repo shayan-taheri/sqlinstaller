@@ -13,24 +13,21 @@ with a relational database management system (RDBMS). It supports a wide range o
 * Teradata
 
 # SQL Installer.NET Guide
-----
-* [Chapter 1 – Development ](-#chapter1)
-	* [Database Version Management ](-#versions)
-	* [Script Folder Layout ](-#layout)
-	* [Script Extensions ](-#extensions)
-	* [Script Formatting ](-#formatting)
-	* [Database vs User/Schema ](-#dbschema)
-* [Chapter 2 – Running ](-#chapter2)
-	* [Install ](-#install)
-	* [Upgrade ](-#upgrade)
-* [Appendix A: Configuration File Reference ](-#appenda)
-* [Appendix B: Adding/Customizing Data Providers ](-#appendb)
-----
 
-{anchor:chapter1}
+* __Chapter 1 – Development__
+--* __Database Version Management__
+--* __Script Folder Layout__
+--* __Script Extensions__
+--* __Script Formatting__
+--* __Database vs User/Schema__
+* __Chapter 2 – Running__
+--* __Install__
+--* __Upgrade__
+* __Appendix A: Configuration File Reference__
+* __Appendix B: Adding/Customizing Data Providers__
+
 # Chapter 1 – Development
-----
-{anchor:versions}
+
 ## Database Version Management
 
 First, you should break down your database into its component pieces (tables, views, etc.) and place them into your source code repository. 
@@ -42,16 +39,19 @@ The _SQL Installer.NET_ toolset employs a fairly straightforward ‘file structure
 
 There’s nothing special about the structure. It simply establishes the convention by which SQL Installer.NET will operate. 
 
-{anchor:layout}
 ## Script Folder Layout
 
 The Upgrade folder contains scripts necessary to upgrade a database from version to version. Subsequent runs of the command line utility would 
 recognize that there is an existing database and execute the scripts in each ‘Upgrade’ folder starting after the current release and ending with the 
-last folder which would become the current release (1.0.3 in the example here). 
+last folder which would become the current release (03.00 in the example here):
+
+* Upgrade
+--* 01.00
+--* 01.05
+--* 02.10
+--* 03.00
 
 > _SQL Installer.NET_ uses a default naming convention to differentiate between the different types of SQL objects (which can be overridden)
-
-{anchor:extensions}
 
 ## Script Extensions
 
@@ -67,7 +67,6 @@ last folder which would become the current release (1.0.3 in the example here).
 Once the database is broken down into its separate pieces each in their own source file and into the hierarchy as illustrated, you would then 
 check these into source control.
  
-{anchor:formatting}
 ## Script Formatting
 
 Aside from the aforementioned file naming conventions imposed by _SQL Installer.NET_, the database developer should be free to author SQL scripts 
@@ -95,11 +94,10 @@ INSERT INTO Categories (CategoryID, CategoryName, Description)
 VALUES (8, 'Seafood', 'Seaweed and fish');
 END;
 /
--- Forward slash must be at the end of the line or by itself on a separate line
-
 ```sql
 
-{anchor:dbschema}
+> __Note:__ Forward slash must be at the end of the line or by itself on a separate line
+
 ## Database vs User/Schema
 
 Every attempt was made in the design of SQL Installer.NET to provide a consistent implementation across all data providers. However, 
@@ -110,9 +108,8 @@ must be setup prior to SQL Installer.NET execution. For these two providers, wha
 really a _schema_ (for Oracle it is both user and schema). All other providers which are included with SQL Installer.NET have the concept 
 of a database which is analogous to a SQL Installer.NET database.
 
-{anchor:chapter2}
 # Chapter 2 – Running
-----
+
 How you would use the SQLInstaller.NET tools depends on both whether you are in development or production/deployment mode and whether you 
 would be creating a new database (Install) or migrating an existing database (Upgrade).  
 
@@ -137,20 +134,17 @@ parameters, then the command-line parameters will override any values present in
 | /UpgradePath | /upg | The relative path to the directory containing the upgrade scripts | /upg="..\Upgrade" |
 | /WriteConfig | /w | Writes the configuration values to the XML file | /w |
 
-{anchor:install}
 ## Install
 
 During development, you can add the Drop option to always drop the database beforehand. This will ensure that you have a complete refresh of 
 the database from source. Obviously, for a production install you would not want to drop the existing database. In this case, the utility 
 will first attempt to determine the database version and report that the database already exists at a given version and exit. 
 
-{anchor:upgrade}
 ## Upgrade
 
 The upgrade process starts just like the install process. The SQLInstaller.NET command line utility will recognize that the database already exists, 
 scan the Upgrade folder for releases, and prompt you to upgrade (assuming the database is not already at the current release). 
 
-{anchor:appenda}
 # Appendix A: Configuration File Reference
 ----
 ```xml
@@ -187,9 +181,9 @@ __IsDisabled__ - Toggles processing of these file types on and off.
 __IsGlobal__ - Run scripts in the global database context
 __HaltOnError__ - Exit completely if any error occurs 
 
-{anchor:appendb}
 # Appendix B: Adding/Customizing Data Providers
 ----
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <ProviderFactory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="ProviderFactory">
