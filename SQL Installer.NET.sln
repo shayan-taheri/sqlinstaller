@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLInstaller.Core", "SQLInstaller.Core\SQLInstaller.Core.csproj", "{7D039E41-7A05-4BA1-8D29-64A015270F79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLInstaller.Console", "SQLInstaller.Console\SQLInstaller.Console.csproj", "{4CF8B29F-A9C0-458C-BA99-4C2334EC6EFA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{56D6DE1A-7960-4CF2-8794-349C7B1167D8}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+		Settings.StyleCop = Settings.StyleCop
+		SQLInstaller.Dotfuscator.xml = SQLInstaller.Dotfuscator.xml
+		SQLInstaller.NET.nupkg = SQLInstaller.NET.nupkg
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D039E41-7A05-4BA1-8D29-64A015270F79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D039E41-7A05-4BA1-8D29-64A015270F79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D039E41-7A05-4BA1-8D29-64A015270F79}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7D039E41-7A05-4BA1-8D29-64A015270F79}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7D039E41-7A05-4BA1-8D29-64A015270F79}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7D039E41-7A05-4BA1-8D29-64A015270F79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D039E41-7A05-4BA1-8D29-64A015270F79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D039E41-7A05-4BA1-8D29-64A015270F79}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{7D039E41-7A05-4BA1-8D29-64A015270F79}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7D039E41-7A05-4BA1-8D29-64A015270F79}.Release|x86.ActiveCfg = Release|Any CPU
+		{4CF8B29F-A9C0-458C-BA99-4C2334EC6EFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CF8B29F-A9C0-458C-BA99-4C2334EC6EFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CF8B29F-A9C0-458C-BA99-4C2334EC6EFA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4CF8B29F-A9C0-458C-BA99-4C2334EC6EFA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{4CF8B29F-A9C0-458C-BA99-4C2334EC6EFA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4CF8B29F-A9C0-458C-BA99-4C2334EC6EFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CF8B29F-A9C0-458C-BA99-4C2334EC6EFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CF8B29F-A9C0-458C-BA99-4C2334EC6EFA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{4CF8B29F-A9C0-458C-BA99-4C2334EC6EFA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{4CF8B29F-A9C0-458C-BA99-4C2334EC6EFA}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

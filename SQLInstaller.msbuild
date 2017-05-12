@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Target Name="Build">
+		<MSBuild Projects="SQL Installer.NET.sln" Targets="Clean;Rebuild" />
+		<MSBuild Projects="SQLInstaller.Setup\SQLInstaller.Setup.wixproj" Targets="Clean;Build" />
+	</Target>
+</Project>
+

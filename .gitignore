@@ -3,3 +3,7 @@
 ################################################################################
 
 /SQLInstaller.Console/bin
+/SQLInstaller.Console/obj/Debug
+/SQLInstaller.Core/bin/Debug
+/SQLInstaller.Core/obj/Debug
+/.vs/SQL Installer.NET/v14

@@ -1,0 +1,1025 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FxCopProject Version="1.36" Name="SQLInstaller.NET">
+ <ProjectOptions>
+  <SharedProject>True</SharedProject>
+  <Stylesheet Apply="False">c:\program files\microsoft fxcop 1.36\Xml\FxCopReport.xsl</Stylesheet>
+  <SaveMessages>
+   <Project Status="Active, Excluded" NewOnly="False" />
+   <Report Status="None" NewOnly="False" />
+  </SaveMessages>
+  <ProjectFile Compress="True" DefaultTargetCheck="True" DefaultRuleCheck="True" SaveByRuleGroup="" Deterministic="True" />
+  <EnableMultithreadedLoad>True</EnableMultithreadedLoad>
+  <EnableMultithreadedAnalysis>True</EnableMultithreadedAnalysis>
+  <SourceLookup>True</SourceLookup>
+  <AnalysisExceptionsThreshold>10</AnalysisExceptionsThreshold>
+  <RuleExceptionsThreshold>1</RuleExceptionsThreshold>
+  <Spelling Locale="en-US" />
+  <OverrideRuleVisibilities>False</OverrideRuleVisibilities>
+  <CustomDictionaries SearchFxCopDir="True" SearchUserProfile="True" SearchProjectDir="True" />
+  <SearchGlobalAssemblyCache>False</SearchGlobalAssemblyCache>
+  <DeadlockDetectionTimeout>120</DeadlockDetectionTimeout>
+  <IgnoreGeneratedCode>False</IgnoreGeneratedCode>
+ </ProjectOptions>
+ <Targets>
+  <Target Name="$(ProjectDir)/SQLInstaller.Console/bin/SQLInstaller.Core.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/SQLInstaller.Console/bin/SQLInstaller.exe" Analyze="True" AnalyzeAllChildren="True" />
+ </Targets>
+ <Rules>
+  <RuleFiles>
+   <RuleFile Name="$(FxCopDir)\Rules\DesignRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\GlobalizationRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\InteroperabilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\MobilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\NamingRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\PerformanceRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\PortabilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\SecurityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\UsageRules.dll" Enabled="True" AllRulesEnabled="True" />
+  </RuleFiles>
+  <Groups />
+  <Settings />
+ </Rules>
+ <FxCopReport Version="1.36">
+  <Targets>
+   <Target Name="$(ProjectDir)/SQLInstaller.Console/bin/SQLInstaller.Core.dll">
+    <Modules>
+     <Module Name="sqlinstaller.core.dll">
+      <Messages>
+       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Status="Excluded" Created="2009-10-14 21:51:14Z">
+        <Issue Name="NoStrongName">
+         <Item>'SQLInstaller.Core.dll'</Item>
+        </Issue>
+       </Message>
+       <Message Id="SQL" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2009-10-14 21:51:14Z">
+        <Issue Name="Assembly">
+         <Item>SQL</Item>
+         <Item>'SQLInstaller.Core.dll'</Item>
+         <Item>Sql</Item>
+        </Issue>
+       </Message>
+      </Messages>
+      <Namespaces>
+       <Namespace Name="SQLInstaller.Core">
+        <Types>
+         <Type Name="DirInfoSorter">
+          <Members>
+           <Member Name="#Compare(System.Object,System.Object)">
+            <Messages>
+             <Message Id="System.String.Compare(System.String,System.String,System.Boolean)" TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'string.Compare(string, string, bool)'</Item>
+               <Item>'DirInfoSorter.Compare(object, object)'</Item>
+               <Item>'string.Compare(string, string, bool, CultureInfo)'</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.String.Compare(System.String,System.String,System.Boolean)" TypeName="SpecifyStringComparison" Category="Microsoft.Globalization" CheckId="CA1307" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'DirInfoSorter.Compare(object, object)'</Item>
+               <Item>'string.Compare(string, string, bool)'</Item>
+               <Item>'string.Compare(string, string, StringComparison)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="EnumerationExtensions">
+          <Members>
+           <Member Name="#Add`1(System.Enum,!!0)">
+            <Messages>
+             <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'string.Format(string, object)'</Item>
+               <Item>'EnumerationExtensions.Add&lt;T&gt;(this Enum, T)'</Item>
+               <Item>'string.Format(IFormatProvider, string, params object[])'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Has`1(System.Enum,!!0)">
+            <Messages>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'EnumerationExtensions.Has&lt;T&gt;(this Enum, T)'</Item>
+               <Item>'object'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Is`1(System.Enum,!!0)">
+            <Messages>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'EnumerationExtensions.Is&lt;T&gt;(this Enum, T)'</Item>
+               <Item>'object'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Remove`1(System.Enum,!!0)">
+            <Messages>
+             <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'string.Format(string, object)'</Item>
+               <Item>'EnumerationExtensions.Remove&lt;T&gt;(this Enum, T)'</Item>
+               <Item>'string.Format(IFormatProvider, string, params object[])'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="FileInfoSorter">
+          <Members>
+           <Member Name="#Compare(System.Object,System.Object)">
+            <Messages>
+             <Message Id="System.String.Compare(System.String,System.String,System.Boolean)" TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'string.Compare(string, string, bool)'</Item>
+               <Item>'FileInfoSorter.Compare(object, object)'</Item>
+               <Item>'string.Compare(string, string, bool, CultureInfo)'</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.String.Compare(System.String,System.String,System.Boolean)" TypeName="SpecifyStringComparison" Category="Microsoft.Globalization" CheckId="CA1307" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'FileInfoSorter.Compare(object, object)'</Item>
+               <Item>'string.Compare(string, string, bool)'</Item>
+               <Item>'string.Compare(string, string, StringComparison)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Installer">
+          <Members>
+           <Member Name="#Create(SQLInstaller.Core.SchemaInfo)">
+            <Messages>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2009-10-14 22:58:40Z">
+              <Issue>
+               <Item>'Installer.Create(SchemaInfo)'</Item>
+               <Item>'Exception'</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.String.Compare(System.String,System.String,System.Boolean)" TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304" Created="2009-10-14 22:58:40Z">
+              <Issue>
+               <Item>'string.Compare(string, string, bool)'</Item>
+               <Item>'Installer.Create(SchemaInfo)'</Item>
+               <Item>'string.Compare(string, string, bool, CultureInfo)'</Item>
+              </Issue>
+              <Issue>
+               <Item>'string.Compare(string, string, bool)'</Item>
+               <Item>'Installer.Create(SchemaInfo)'</Item>
+               <Item>'string.Compare(string, string, bool, CultureInfo)'</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.String.Compare(System.String,System.String,System.Boolean)" TypeName="SpecifyStringComparison" Category="Microsoft.Globalization" CheckId="CA1307" Created="2009-10-14 22:58:40Z">
+              <Issue>
+               <Item>'Installer.Create(SchemaInfo)'</Item>
+               <Item>'string.Compare(string, string, bool)'</Item>
+               <Item>'string.Compare(string, string, StringComparison)'</Item>
+              </Issue>
+              <Issue>
+               <Item>'Installer.Create(SchemaInfo)'</Item>
+               <Item>'string.Compare(string, string, bool)'</Item>
+               <Item>'string.Compare(string, string, StringComparison)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Prepare(SQLInstaller.Core.ProviderType,System.String,System.String)">
+            <Messages>
+             <Message Id="System.String.Compare(System.String,System.String,System.Boolean)" TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304" Created="2009-10-14 22:53:50Z">
+              <Issue>
+               <Item>'string.Compare(string, string, bool)'</Item>
+               <Item>'Installer.Prepare(ProviderType, string, string)'</Item>
+               <Item>'string.Compare(string, string, bool, CultureInfo)'</Item>
+              </Issue>
+              <Issue>
+               <Item>'string.Compare(string, string, bool)'</Item>
+               <Item>'Installer.Prepare(ProviderType, string, string)'</Item>
+               <Item>'string.Compare(string, string, bool, CultureInfo)'</Item>
+              </Issue>
+              <Issue>
+               <Item>'string.Compare(string, string, bool)'</Item>
+               <Item>'Installer.Prepare(ProviderType, string, string)'</Item>
+               <Item>'string.Compare(string, string, bool, CultureInfo)'</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.String.Compare(System.String,System.String,System.Boolean)" TypeName="SpecifyStringComparison" Category="Microsoft.Globalization" CheckId="CA1307" Created="2009-10-14 22:53:50Z">
+              <Issue>
+               <Item>'Installer.Prepare(ProviderType, string, string)'</Item>
+               <Item>'string.Compare(string, string, bool)'</Item>
+               <Item>'string.Compare(string, string, StringComparison)'</Item>
+              </Issue>
+              <Issue>
+               <Item>'Installer.Prepare(ProviderType, string, string)'</Item>
+               <Item>'string.Compare(string, string, bool)'</Item>
+               <Item>'string.Compare(string, string, StringComparison)'</Item>
+              </Issue>
+              <Issue>
+               <Item>'Installer.Prepare(ProviderType, string, string)'</Item>
+               <Item>'string.Compare(string, string, bool)'</Item>
+               <Item>'string.Compare(string, string, StringComparison)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="OracleProvider">
+          <Members>
+           <Member Name="#BuilderNewUser">
+            <Accessors>
+             <Accessor Name="#get_BuilderNewUser()">
+              <Messages>
+               <Message Id="System.String.ToUpper" TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304" Created="2009-10-14 21:51:14Z">
+                <Issue>
+                 <Item>'string.ToUpper()'</Item>
+                 <Item>'OracleProvider.BuilderNewUser.get()'</Item>
+                 <Item>'string.ToUpper(CultureInfo)'</Item>
+                </Issue>
+               </Message>
+              </Messages>
+             </Accessor>
+            </Accessors>
+           </Member>
+           <Member Name="#CreateDatabase()">
+            <Messages>
+             <Message Id="System.String.ToUpper" TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'string.ToUpper()'</Item>
+               <Item>'OracleProvider.CreateDatabase()'</Item>
+               <Item>'string.ToUpper(CultureInfo)'</Item>
+              </Issue>
+              <Issue>
+               <Item>'string.ToUpper()'</Item>
+               <Item>'OracleProvider.CreateDatabase()'</Item>
+               <Item>'string.ToUpper(CultureInfo)'</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'string.Format(string, object)'</Item>
+               <Item>'OracleProvider.CreateDatabase()'</Item>
+               <Item>'string.Format(IFormatProvider, string, params object[])'</Item>
+              </Issue>
+              <Issue>
+               <Item>'string.Format(string, object)'</Item>
+               <Item>'OracleProvider.CreateDatabase()'</Item>
+               <Item>'string.Format(IFormatProvider, string, params object[])'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#DropDatabase()">
+            <Messages>
+             <Message Id="System.String.ToUpper" TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'string.ToUpper()'</Item>
+               <Item>'OracleProvider.DropDatabase()'</Item>
+               <Item>'string.ToUpper(CultureInfo)'</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'string.Format(string, object)'</Item>
+               <Item>'OracleProvider.DropDatabase()'</Item>
+               <Item>'string.Format(IFormatProvider, string, params object[])'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Exists()">
+            <Messages>
+             <Message Id="System.String.ToUpper" TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'string.ToUpper()'</Item>
+               <Item>'OracleProvider.Exists()'</Item>
+               <Item>'string.ToUpper(CultureInfo)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#GetVersion()">
+            <Messages>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'OracleProvider.GetVersion()'</Item>
+               <Item>'Exception'</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.String.ToUpper" TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'string.ToUpper()'</Item>
+               <Item>'OracleProvider.GetVersion()'</Item>
+               <Item>'string.ToUpper(CultureInfo)'</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'string.Format(string, object)'</Item>
+               <Item>'OracleProvider.GetVersion()'</Item>
+               <Item>'string.Format(IFormatProvider, string, params object[])'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#SetVersion(System.String,System.String)">
+            <Messages>
+             <Message Id="System.String.ToUpper" TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'string.ToUpper()'</Item>
+               <Item>'OracleProvider.SetVersion(string, string)'</Item>
+               <Item>'string.ToUpper(CultureInfo)'</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.String.Format(System.String,System.Object,System.Object,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'string.Format(string, object, object, object)'</Item>
+               <Item>'OracleProvider.SetVersion(string, string)'</Item>
+               <Item>'string.Format(IFormatProvider, string, params object[])'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="PostGresProvider">
+          <Members>
+           <Member Name="#CreateDatabase()">
+            <Messages>
+             <Message Id="System.String.ToLower" TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'string.ToLower()'</Item>
+               <Item>'PostGresProvider.CreateDatabase()'</Item>
+               <Item>'string.ToLower(CultureInfo)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#DropDatabase()">
+            <Messages>
+             <Message Id="System.String.ToLower" TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'string.ToLower()'</Item>
+               <Item>'PostGresProvider.DropDatabase()'</Item>
+               <Item>'string.ToLower(CultureInfo)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#ExecuteScript(System.String)">
+            <Messages>
+             <Message Id="System.String.ToLower" TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'string.ToLower()'</Item>
+               <Item>'PostGresProvider.ExecuteScript(string)'</Item>
+               <Item>'string.ToLower(CultureInfo)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Exists()">
+            <Messages>
+             <Message Id="System.String.ToLower" TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'string.ToLower()'</Item>
+               <Item>'PostGresProvider.Exists()'</Item>
+               <Item>'string.ToLower(CultureInfo)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#GetVersion()">
+            <Messages>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'PostGresProvider.GetVersion()'</Item>
+               <Item>'Exception'</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.String.ToLower" TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'string.ToLower()'</Item>
+               <Item>'PostGresProvider.GetVersion()'</Item>
+               <Item>'string.ToLower(CultureInfo)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#SetVersion(System.String,System.String)">
+            <Messages>
+             <Message Id="System.String.ToLower" TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'string.ToLower()'</Item>
+               <Item>'PostGresProvider.SetVersion(string, string)'</Item>
+               <Item>'string.ToLower(CultureInfo)'</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.String.Format(System.String,System.Object,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'string.Format(string, object, object)'</Item>
+               <Item>'PostGresProvider.SetVersion(string, string)'</Item>
+               <Item>'string.Format(IFormatProvider, string, params object[])'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Provider">
+          <Members>
+           <Member Name="#GetVersion()">
+            <Messages>
+             <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Excluded" Created="2009-10-14 21:51:14Z">
+              <Issue Certainty="50">
+               <Item>'Provider.GetVersion()'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="SchemaInfo">
+          <Members>
+           <Member Name="#IsCurrent">
+            <Accessors>
+             <Accessor Name="#get_IsCurrent()">
+              <Messages>
+               <Message Id="System.String.Compare(System.String,System.String,System.Boolean)" TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304" Created="2009-10-14 22:58:40Z">
+                <Issue>
+                 <Item>'string.Compare(string, string, bool)'</Item>
+                 <Item>'SchemaInfo.IsCurrent.get()'</Item>
+                 <Item>'string.Compare(string, string, bool, CultureInfo)'</Item>
+                </Issue>
+                <Issue>
+                 <Item>'string.Compare(string, string, bool)'</Item>
+                 <Item>'SchemaInfo.IsCurrent.get()'</Item>
+                 <Item>'string.Compare(string, string, bool, CultureInfo)'</Item>
+                </Issue>
+                <Issue>
+                 <Item>'string.Compare(string, string, bool)'</Item>
+                 <Item>'SchemaInfo.IsCurrent.get()'</Item>
+                 <Item>'string.Compare(string, string, bool, CultureInfo)'</Item>
+                </Issue>
+               </Message>
+               <Message Id="System.String.Compare(System.String,System.String,System.Boolean)" TypeName="SpecifyStringComparison" Category="Microsoft.Globalization" CheckId="CA1307" Created="2009-10-14 22:58:40Z">
+                <Issue>
+                 <Item>'SchemaInfo.IsCurrent.get()'</Item>
+                 <Item>'string.Compare(string, string, bool)'</Item>
+                 <Item>'string.Compare(string, string, StringComparison)'</Item>
+                </Issue>
+                <Issue>
+                 <Item>'SchemaInfo.IsCurrent.get()'</Item>
+                 <Item>'string.Compare(string, string, bool)'</Item>
+                 <Item>'string.Compare(string, string, StringComparison)'</Item>
+                </Issue>
+                <Issue>
+                 <Item>'SchemaInfo.IsCurrent.get()'</Item>
+                 <Item>'string.Compare(string, string, bool)'</Item>
+                 <Item>'string.Compare(string, string, StringComparison)'</Item>
+                </Issue>
+               </Message>
+              </Messages>
+             </Accessor>
+            </Accessors>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="SqlBuild">
+          <Members>
+           <Member Name="#Execute()">
+            <Messages>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'SqlBuild.Execute()'</Item>
+               <Item>'Exception'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="SqlProvider">
+          <Members>
+           <Member Name="#CreateDatabase()">
+            <Messages>
+             <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'string.Format(string, object)'</Item>
+               <Item>'SqlProvider.CreateDatabase()'</Item>
+               <Item>'string.Format(IFormatProvider, string, params object[])'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#DropDatabase()">
+            <Messages>
+             <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'string.Format(string, object)'</Item>
+               <Item>'SqlProvider.DropDatabase()'</Item>
+               <Item>'string.Format(IFormatProvider, string, params object[])'</Item>
+              </Issue>
+              <Issue>
+               <Item>'string.Format(string, object)'</Item>
+               <Item>'SqlProvider.DropDatabase()'</Item>
+               <Item>'string.Format(IFormatProvider, string, params object[])'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Exists()">
+            <Messages>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'SqlProvider.Exists()'</Item>
+               <Item>'Exception'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+      <Resources>
+       <Resource Name="SQLInstaller.Core.Resources.resources">
+        <Messages>
+         <Message Id="FILENAME" TypeName="ResourceStringCompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1701" Status="Excluded" Created="2009-10-14 21:51:14Z">
+          <Issue Name="StringResourceShouldBeCompoundWord">
+           <Item>'SQLInstaller.Core.Resources.resx'</Item>
+           <Item>DbCreate</Item>
+           <Item>FILENAME</Item>
+           <Item>/****** Object:  Database [{0}]    Script Date: 03/29/2007 12:50:49 ******/&#xD;&#xA;USE [master]&#xD;&#xA;GO&#xD;&#xA;-- Get default data path&#xD;&#xA;DECLARE @data_path nvarchar(512);&#xD;&#xA;SET @data_path = (SELECT SUBSTRING(physical_name, 1, CHARINDEX(N'master.mdf', LOWER(physical_name)) - 1)&#xD;&#xA;                  FROM master.sys.mast...</Item>
+           <Item>FileName</Item>
+          </Issue>
+          <Issue Name="StringResourceShouldBeCompoundWord">
+           <Item>'SQLInstaller.Core.Resources.resx'</Item>
+           <Item>DbCreate</Item>
+           <Item>FILENAME</Item>
+           <Item>/****** Object:  Database [{0}]    Script Date: 03/29/2007 12:50:49 ******/&#xD;&#xA;USE [master]&#xD;&#xA;GO&#xD;&#xA;-- Get default data path&#xD;&#xA;DECLARE @data_path nvarchar(512);&#xD;&#xA;SET @data_path = (SELECT SUBSTRING(physical_name, 1, CHARINDEX(N'master.mdf', LOWER(physical_name)) - 1)&#xD;&#xA;                  FROM master.sys.mast...</Item>
+           <Item>FileName</Item>
+          </Issue>
+         </Message>
+         <Message Id="N'master" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2009-10-14 22:42:17Z">
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Core.Resources.resx'</Item>
+           <Item>DbCreate</Item>
+           <Item>N'master</Item>
+           <Item>/****** Object:  Database [{0}]    Script Date: 03/29/2007 12:50:49 ******/&#xD;&#xA;USE [master]&#xD;&#xA;GO&#xD;&#xA;-- Get default data path&#xD;&#xA;DECLARE @data_path nvarchar(512);&#xD;&#xA;SET @data_path = (SELECT SUBSTRING(physical_name, 1, CHARINDEX(N'master.mdf', LOWER(physical_name)) - 1)&#xD;&#xA;                  FROM master.sys.mast...</Item>
+          </Issue>
+         </Message>
+         <Message Id="databaseid" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2009-10-14 22:42:17Z">
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Core.Resources.resx'</Item>
+           <Item>DbCreate</Item>
+           <Item>databaseid</Item>
+           <Item>/****** Object:  Database [{0}]    Script Date: 03/29/2007 12:50:49 ******/&#xD;&#xA;USE [master]&#xD;&#xA;GO&#xD;&#xA;-- Get default data path&#xD;&#xA;DECLARE @data_path nvarchar(512);&#xD;&#xA;SET @data_path = (SELECT SUBSTRING(physical_name, 1, CHARINDEX(N'master.mdf', LOWER(physical_name)) - 1)&#xD;&#xA;                  FROM master.sys.mast...</Item>
+          </Issue>
+         </Message>
+         <Message Id="datapath" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2009-10-14 22:42:17Z">
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Core.Resources.resx'</Item>
+           <Item>DbCreate</Item>
+           <Item>datapath</Item>
+           <Item>/****** Object:  Database [{0}]    Script Date: 03/29/2007 12:50:49 ******/&#xD;&#xA;USE [master]&#xD;&#xA;GO&#xD;&#xA;-- Get default data path&#xD;&#xA;DECLARE @data_path nvarchar(512);&#xD;&#xA;SET @data_path = (SELECT SUBSTRING(physical_name, 1, CHARINDEX(N'master.mdf', LOWER(physical_name)) - 1)&#xD;&#xA;                  FROM master.sys.mast...</Item>
+          </Issue>
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Core.Resources.resx'</Item>
+           <Item>DbCreate</Item>
+           <Item>datapath</Item>
+           <Item>/****** Object:  Database [{0}]    Script Date: 03/29/2007 12:50:49 ******/&#xD;&#xA;USE [master]&#xD;&#xA;GO&#xD;&#xA;-- Get default data path&#xD;&#xA;DECLARE @data_path nvarchar(512);&#xD;&#xA;SET @data_path = (SELECT SUBSTRING(physical_name, 1, CHARINDEX(N'master.mdf', LOWER(physical_name)) - 1)&#xD;&#xA;                  FROM master.sys.mast...</Item>
+          </Issue>
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Core.Resources.resx'</Item>
+           <Item>DbCreate</Item>
+           <Item>datapath</Item>
+           <Item>/****** Object:  Database [{0}]    Script Date: 03/29/2007 12:50:49 ******/&#xD;&#xA;USE [master]&#xD;&#xA;GO&#xD;&#xA;-- Get default data path&#xD;&#xA;DECLARE @data_path nvarchar(512);&#xD;&#xA;SET @data_path = (SELECT SUBSTRING(physical_name, 1, CHARINDEX(N'master.mdf', LOWER(physical_name)) - 1)&#xD;&#xA;                  FROM master.sys.mast...</Item>
+          </Issue>
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Core.Resources.resx'</Item>
+           <Item>DbCreate</Item>
+           <Item>datapath</Item>
+           <Item>/****** Object:  Database [{0}]    Script Date: 03/29/2007 12:50:49 ******/&#xD;&#xA;USE [master]&#xD;&#xA;GO&#xD;&#xA;-- Get default data path&#xD;&#xA;DECLARE @data_path nvarchar(512);&#xD;&#xA;SET @data_path = (SELECT SUBSTRING(physical_name, 1, CHARINDEX(N'master.mdf', LOWER(physical_name)) - 1)&#xD;&#xA;                  FROM master.sys.mast...</Item>
+          </Issue>
+         </Message>
+         <Message Id="dbname" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2009-10-14 22:42:17Z">
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Core.Resources.resx'</Item>
+           <Item>DbCreate</Item>
+           <Item>dbname</Item>
+           <Item>/****** Object:  Database [{0}]    Script Date: 03/29/2007 12:50:49 ******/&#xD;&#xA;USE [master]&#xD;&#xA;GO&#xD;&#xA;-- Get default data path&#xD;&#xA;DECLARE @data_path nvarchar(512);&#xD;&#xA;SET @data_path = (SELECT SUBSTRING(physical_name, 1, CHARINDEX(N'master.mdf', LOWER(physical_name)) - 1)&#xD;&#xA;                  FROM master.sys.mast...</Item>
+          </Issue>
+         </Message>
+         <Message Id="dbo" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2009-10-14 22:42:17Z">
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Core.Resources.resx'</Item>
+           <Item>DbCreate</Item>
+           <Item>dbo</Item>
+           <Item>/****** Object:  Database [{0}]    Script Date: 03/29/2007 12:50:49 ******/&#xD;&#xA;USE [master]&#xD;&#xA;GO&#xD;&#xA;-- Get default data path&#xD;&#xA;DECLARE @data_path nvarchar(512);&#xD;&#xA;SET @data_path = (SELECT SUBSTRING(physical_name, 1, CHARINDEX(N'master.mdf', LOWER(physical_name)) - 1)&#xD;&#xA;                  FROM master.sys.mast...</Item>
+          </Issue>
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Core.Resources.resx'</Item>
+           <Item>DbCreate</Item>
+           <Item>dbo</Item>
+           <Item>/****** Object:  Database [{0}]    Script Date: 03/29/2007 12:50:49 ******/&#xD;&#xA;USE [master]&#xD;&#xA;GO&#xD;&#xA;-- Get default data path&#xD;&#xA;DECLARE @data_path nvarchar(512);&#xD;&#xA;SET @data_path = (SELECT SUBSTRING(physical_name, 1, CHARINDEX(N'master.mdf', LOWER(physical_name)) - 1)&#xD;&#xA;                  FROM master.sys.mast...</Item>
+          </Issue>
+         </Message>
+         <Message Id="fileid" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2009-10-14 22:42:17Z">
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Core.Resources.resx'</Item>
+           <Item>DbCreate</Item>
+           <Item>fileid</Item>
+           <Item>/****** Object:  Database [{0}]    Script Date: 03/29/2007 12:50:49 ******/&#xD;&#xA;USE [master]&#xD;&#xA;GO&#xD;&#xA;-- Get default data path&#xD;&#xA;DECLARE @data_path nvarchar(512);&#xD;&#xA;SET @data_path = (SELECT SUBSTRING(physical_name, 1, CHARINDEX(N'master.mdf', LOWER(physical_name)) - 1)&#xD;&#xA;                  FROM master.sys.mast...</Item>
+          </Issue>
+         </Message>
+         <Message Id="ldf" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2009-10-14 22:42:17Z">
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Core.Resources.resx'</Item>
+           <Item>DbCreate</Item>
+           <Item>ldf</Item>
+           <Item>/****** Object:  Database [{0}]    Script Date: 03/29/2007 12:50:49 ******/&#xD;&#xA;USE [master]&#xD;&#xA;GO&#xD;&#xA;-- Get default data path&#xD;&#xA;DECLARE @data_path nvarchar(512);&#xD;&#xA;SET @data_path = (SELECT SUBSTRING(physical_name, 1, CHARINDEX(N'master.mdf', LOWER(physical_name)) - 1)&#xD;&#xA;                  FROM master.sys.mast...</Item>
+          </Issue>
+         </Message>
+         <Message Id="masterfiles" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2009-10-14 22:42:17Z">
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Core.Resources.resx'</Item>
+           <Item>DbCreate</Item>
+           <Item>masterfiles</Item>
+           <Item>/****** Object:  Database [{0}]    Script Date: 03/29/2007 12:50:49 ******/&#xD;&#xA;USE [master]&#xD;&#xA;GO&#xD;&#xA;-- Get default data path&#xD;&#xA;DECLARE @data_path nvarchar(512);&#xD;&#xA;SET @data_path = (SELECT SUBSTRING(physical_name, 1, CHARINDEX(N'master.mdf', LOWER(physical_name)) - 1)&#xD;&#xA;                  FROM master.sys.mast...</Item>
+          </Issue>
+         </Message>
+         <Message Id="mdf" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2009-10-14 22:42:17Z">
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Core.Resources.resx'</Item>
+           <Item>DbCreate</Item>
+           <Item>mdf</Item>
+           <Item>/****** Object:  Database [{0}]    Script Date: 03/29/2007 12:50:49 ******/&#xD;&#xA;USE [master]&#xD;&#xA;GO&#xD;&#xA;-- Get default data path&#xD;&#xA;DECLARE @data_path nvarchar(512);&#xD;&#xA;SET @data_path = (SELECT SUBSTRING(physical_name, 1, CHARINDEX(N'master.mdf', LOWER(physical_name)) - 1)&#xD;&#xA;                  FROM master.sys.mast...</Item>
+          </Issue>
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Core.Resources.resx'</Item>
+           <Item>DbCreate</Item>
+           <Item>mdf</Item>
+           <Item>/****** Object:  Database [{0}]    Script Date: 03/29/2007 12:50:49 ******/&#xD;&#xA;USE [master]&#xD;&#xA;GO&#xD;&#xA;-- Get default data path&#xD;&#xA;DECLARE @data_path nvarchar(512);&#xD;&#xA;SET @data_path = (SELECT SUBSTRING(physical_name, 1, CHARINDEX(N'master.mdf', LOWER(physical_name)) - 1)&#xD;&#xA;                  FROM master.sys.mast...</Item>
+          </Issue>
+         </Message>
+         <Message Id="newcmptlevel" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2009-10-14 22:42:17Z">
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Core.Resources.resx'</Item>
+           <Item>DbCreate</Item>
+           <Item>newcmptlevel</Item>
+           <Item>/****** Object:  Database [{0}]    Script Date: 03/29/2007 12:50:49 ******/&#xD;&#xA;USE [master]&#xD;&#xA;GO&#xD;&#xA;-- Get default data path&#xD;&#xA;DECLARE @data_path nvarchar(512);&#xD;&#xA;SET @data_path = (SELECT SUBSTRING(physical_name, 1, CHARINDEX(N'master.mdf', LOWER(physical_name)) - 1)&#xD;&#xA;                  FROM master.sys.mast...</Item>
+          </Issue>
+         </Message>
+         <Message Id="nvarchar" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2009-10-14 22:42:17Z">
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Core.Resources.resx'</Item>
+           <Item>DbCreate</Item>
+           <Item>nvarchar</Item>
+           <Item>/****** Object:  Database [{0}]    Script Date: 03/29/2007 12:50:49 ******/&#xD;&#xA;USE [master]&#xD;&#xA;GO&#xD;&#xA;-- Get default data path&#xD;&#xA;DECLARE @data_path nvarchar(512);&#xD;&#xA;SET @data_path = (SELECT SUBSTRING(physical_name, 1, CHARINDEX(N'master.mdf', LOWER(physical_name)) - 1)&#xD;&#xA;                  FROM master.sys.mast...</Item>
+          </Issue>
+         </Message>
+         <Message Id="physicalname" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2009-10-14 22:42:17Z">
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Core.Resources.resx'</Item>
+           <Item>DbCreate</Item>
+           <Item>physicalname</Item>
+           <Item>/****** Object:  Database [{0}]    Script Date: 03/29/2007 12:50:49 ******/&#xD;&#xA;USE [master]&#xD;&#xA;GO&#xD;&#xA;-- Get default data path&#xD;&#xA;DECLARE @data_path nvarchar(512);&#xD;&#xA;SET @data_path = (SELECT SUBSTRING(physical_name, 1, CHARINDEX(N'master.mdf', LOWER(physical_name)) - 1)&#xD;&#xA;                  FROM master.sys.mast...</Item>
+          </Issue>
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Core.Resources.resx'</Item>
+           <Item>DbCreate</Item>
+           <Item>physicalname</Item>
+           <Item>/****** Object:  Database [{0}]    Script Date: 03/29/2007 12:50:49 ******/&#xD;&#xA;USE [master]&#xD;&#xA;GO&#xD;&#xA;-- Get default data path&#xD;&#xA;DECLARE @data_path nvarchar(512);&#xD;&#xA;SET @data_path = (SELECT SUBSTRING(physical_name, 1, CHARINDEX(N'master.mdf', LOWER(physical_name)) - 1)&#xD;&#xA;                  FROM master.sys.mast...</Item>
+          </Issue>
+         </Message>
+         <Message Id="spdbcmptlevel" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2009-10-14 22:42:17Z">
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Core.Resources.resx'</Item>
+           <Item>DbCreate</Item>
+           <Item>spdbcmptlevel</Item>
+           <Item>/****** Object:  Database [{0}]    Script Date: 03/29/2007 12:50:49 ******/&#xD;&#xA;USE [master]&#xD;&#xA;GO&#xD;&#xA;-- Get default data path&#xD;&#xA;DECLARE @data_path nvarchar(512);&#xD;&#xA;SET @data_path = (SELECT SUBSTRING(physical_name, 1, CHARINDEX(N'master.mdf', LOWER(physical_name)) - 1)&#xD;&#xA;                  FROM master.sys.mast...</Item>
+          </Issue>
+         </Message>
+         <Message Id="spfulltextdatabase" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2009-10-14 22:42:17Z">
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Core.Resources.resx'</Item>
+           <Item>DbCreate</Item>
+           <Item>spfulltextdatabase</Item>
+           <Item>/****** Object:  Database [{0}]    Script Date: 03/29/2007 12:50:49 ******/&#xD;&#xA;USE [master]&#xD;&#xA;GO&#xD;&#xA;-- Get default data path&#xD;&#xA;DECLARE @data_path nvarchar(512);&#xD;&#xA;SET @data_path = (SELECT SUBSTRING(physical_name, 1, CHARINDEX(N'master.mdf', LOWER(physical_name)) - 1)&#xD;&#xA;                  FROM master.sys.mast...</Item>
+          </Issue>
+         </Message>
+        </Messages>
+       </Resource>
+      </Resources>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/SQLInstaller.Console/bin/SQLInstaller.exe">
+    <Modules>
+     <Module Name="sqlinstaller.exe">
+      <Messages>
+       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Status="Excluded" Created="2009-10-14 21:51:14Z">
+        <Issue Name="NoStrongName">
+         <Item>'SQLInstaller.exe'</Item>
+        </Issue>
+       </Message>
+       <Message Id="SQL" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2009-10-14 21:51:14Z">
+        <Issue Name="Assembly">
+         <Item>SQL</Item>
+         <Item>'SQLInstaller.exe'</Item>
+         <Item>Sql</Item>
+        </Issue>
+       </Message>
+      </Messages>
+      <Namespaces>
+       <Namespace Name="SQLInstaller.Console">
+        <Types>
+         <Type Name="Parameters">
+          <Members>
+           <Member Name="#Dispose()">
+            <Messages>
+             <Message Id="rsa" TypeName="DisposableFieldsShouldBeDisposed" Category="Microsoft.Usage" CheckId="CA2213" Status="Excluded" Created="2009-10-14 22:11:38Z">
+              <Issue>
+               <Item>'Parameters'</Item>
+               <Item>'Parameters.rsa'</Item>
+               <Item>'RSACryptoServiceProvider'</Item>
+              </Issue>
+              <Notes>
+               <User Name="bschloz">
+                <Note Id="1" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Program">
+          <Messages>
+           <Message TypeName="StaticHolderTypesShouldNotHaveConstructors" Category="Microsoft.Design" CheckId="CA1053" Created="2009-10-15 20:17:58Z">
+            <Issue>
+             <Item>'Program'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name="#InstallCallback(System.IAsyncResult)">
+            <Messages>
+             <Message Id="iar" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-10-15 20:17:58Z">
+              <Issue Name="MemberParameter">
+               <Item>'Program.InstallCallback(IAsyncResult)'</Item>
+               <Item>iar</Item>
+               <Item>'iar'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Program+InstallMethod">
+          <Messages>
+           <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Created="2009-10-15 20:17:58Z">
+            <Issue>
+             <Item>'Program.InstallMethod'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="Spinner">
+          <Members>
+           <Member Name="#.ctor()">
+            <Messages>
+             <Message TypeName="DoNotUseTimersThatPreventPowerStateChanges" Category="Microsoft.Mobility" CheckId="CA1601" Status="Excluded" Created="2009-10-14 21:51:14Z">
+              <Issue>
+               <Item>'Timer.Timer(double)'</Item>
+               <Item>'Spinner.Spinner()'</Item>
+              </Issue>
+              <Notes>
+               <User Name="bschloz">
+                <Note Id="2" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+      <Resources>
+       <Resource Name="SQLInstaller.Console.Resources.resources">
+        <Messages>
+         <Message Id="Msftedit" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2009-10-14 22:11:38Z">
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Console.Resources.resx'</Item>
+           <Item>License</Item>
+           <Item>Msftedit</Item>
+           <Item>{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\froman\fcharset0 Times New Roman;}{\f1\fswiss\fcharset0 Arial;}}&#xD;&#xA;{\*\generator Msftedit 5.41.21.2500;}\viewkind4\uc1\pard\sb100\sa100\f0\fs24 Microsoft Public License (Ms-PL)\line\line This license governs use of the accompanying software. If y...</Item>
+          </Issue>
+          <Notes>
+           <User Name="bschloz">
+            <Note Id="0" />
+           </User>
+          </Notes>
+         </Message>
+         <Message Id="ansicpg" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2009-10-14 22:11:38Z">
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Console.Resources.resx'</Item>
+           <Item>License</Item>
+           <Item>ansicpg</Item>
+           <Item>{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\froman\fcharset0 Times New Roman;}{\f1\fswiss\fcharset0 Arial;}}&#xD;&#xA;{\*\generator Msftedit 5.41.21.2500;}\viewkind4\uc1\pard\sb100\sa100\f0\fs24 Microsoft Public License (Ms-PL)\line\line This license governs use of the accompanying software. If y...</Item>
+          </Issue>
+          <Notes>
+           <User Name="bschloz">
+            <Note Id="0" />
+           </User>
+          </Notes>
+         </Message>
+         <Message Id="deff" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2009-10-14 22:11:38Z">
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Console.Resources.resx'</Item>
+           <Item>License</Item>
+           <Item>deff</Item>
+           <Item>{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\froman\fcharset0 Times New Roman;}{\f1\fswiss\fcharset0 Arial;}}&#xD;&#xA;{\*\generator Msftedit 5.41.21.2500;}\viewkind4\uc1\pard\sb100\sa100\f0\fs24 Microsoft Public License (Ms-PL)\line\line This license governs use of the accompanying software. If y...</Item>
+          </Issue>
+          <Notes>
+           <User Name="bschloz">
+            <Note Id="0" />
+           </User>
+          </Notes>
+         </Message>
+         <Message Id="deflang" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2009-10-14 22:11:38Z">
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Console.Resources.resx'</Item>
+           <Item>License</Item>
+           <Item>deflang</Item>
+           <Item>{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\froman\fcharset0 Times New Roman;}{\f1\fswiss\fcharset0 Arial;}}&#xD;&#xA;{\*\generator Msftedit 5.41.21.2500;}\viewkind4\uc1\pard\sb100\sa100\f0\fs24 Microsoft Public License (Ms-PL)\line\line This license governs use of the accompanying software. If y...</Item>
+          </Issue>
+          <Notes>
+           <User Name="bschloz">
+            <Note Id="0" />
+           </User>
+          </Notes>
+         </Message>
+         <Message Id="fcharset" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2009-10-14 22:11:38Z">
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Console.Resources.resx'</Item>
+           <Item>License</Item>
+           <Item>fcharset</Item>
+           <Item>{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\froman\fcharset0 Times New Roman;}{\f1\fswiss\fcharset0 Arial;}}&#xD;&#xA;{\*\generator Msftedit 5.41.21.2500;}\viewkind4\uc1\pard\sb100\sa100\f0\fs24 Microsoft Public License (Ms-PL)\line\line This license governs use of the accompanying software. If y...</Item>
+          </Issue>
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Console.Resources.resx'</Item>
+           <Item>License</Item>
+           <Item>fcharset</Item>
+           <Item>{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\froman\fcharset0 Times New Roman;}{\f1\fswiss\fcharset0 Arial;}}&#xD;&#xA;{\*\generator Msftedit 5.41.21.2500;}\viewkind4\uc1\pard\sb100\sa100\f0\fs24 Microsoft Public License (Ms-PL)\line\line This license governs use of the accompanying software. If y...</Item>
+          </Issue>
+          <Notes>
+           <User Name="bschloz">
+            <Note Id="0" />
+           </User>
+          </Notes>
+         </Message>
+         <Message Id="fonttbl" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2009-10-14 22:11:38Z">
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Console.Resources.resx'</Item>
+           <Item>License</Item>
+           <Item>fonttbl</Item>
+           <Item>{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\froman\fcharset0 Times New Roman;}{\f1\fswiss\fcharset0 Arial;}}&#xD;&#xA;{\*\generator Msftedit 5.41.21.2500;}\viewkind4\uc1\pard\sb100\sa100\f0\fs24 Microsoft Public License (Ms-PL)\line\line This license governs use of the accompanying software. If y...</Item>
+          </Issue>
+          <Notes>
+           <User Name="bschloz">
+            <Note Id="0" />
+           </User>
+          </Notes>
+         </Message>
+         <Message Id="froman" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2009-10-14 22:11:38Z">
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Console.Resources.resx'</Item>
+           <Item>License</Item>
+           <Item>froman</Item>
+           <Item>{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\froman\fcharset0 Times New Roman;}{\f1\fswiss\fcharset0 Arial;}}&#xD;&#xA;{\*\generator Msftedit 5.41.21.2500;}\viewkind4\uc1\pard\sb100\sa100\f0\fs24 Microsoft Public License (Ms-PL)\line\line This license governs use of the accompanying software. If y...</Item>
+          </Issue>
+          <Notes>
+           <User Name="bschloz">
+            <Note Id="0" />
+           </User>
+          </Notes>
+         </Message>
+         <Message Id="fswiss" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2009-10-14 22:11:38Z">
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Console.Resources.resx'</Item>
+           <Item>License</Item>
+           <Item>fswiss</Item>
+           <Item>{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\froman\fcharset0 Times New Roman;}{\f1\fswiss\fcharset0 Arial;}}&#xD;&#xA;{\*\generator Msftedit 5.41.21.2500;}\viewkind4\uc1\pard\sb100\sa100\f0\fs24 Microsoft Public License (Ms-PL)\line\line This license governs use of the accompanying software. If y...</Item>
+          </Issue>
+          <Notes>
+           <User Name="bschloz">
+            <Note Id="0" />
+           </User>
+          </Notes>
+         </Message>
+         <Message Id="pard" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2009-10-14 22:11:38Z">
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Console.Resources.resx'</Item>
+           <Item>License</Item>
+           <Item>pard</Item>
+           <Item>{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\froman\fcharset0 Times New Roman;}{\f1\fswiss\fcharset0 Arial;}}&#xD;&#xA;{\*\generator Msftedit 5.41.21.2500;}\viewkind4\uc1\pard\sb100\sa100\f0\fs24 Microsoft Public License (Ms-PL)\line\line This license governs use of the accompanying software. If y...</Item>
+          </Issue>
+          <Notes>
+           <User Name="bschloz">
+            <Note Id="0" />
+           </User>
+          </Notes>
+         </Message>
+         <Message Id="uc" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2009-10-14 22:11:38Z">
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Console.Resources.resx'</Item>
+           <Item>License</Item>
+           <Item>uc</Item>
+           <Item>{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\froman\fcharset0 Times New Roman;}{\f1\fswiss\fcharset0 Arial;}}&#xD;&#xA;{\*\generator Msftedit 5.41.21.2500;}\viewkind4\uc1\pard\sb100\sa100\f0\fs24 Microsoft Public License (Ms-PL)\line\line This license governs use of the accompanying software. If y...</Item>
+          </Issue>
+          <Notes>
+           <User Name="bschloz">
+            <Note Id="0" />
+           </User>
+          </Notes>
+         </Message>
+         <Message Id="viewkind" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Excluded" Created="2009-10-14 22:11:38Z">
+          <Issue Name="StringResource">
+           <Item>'SQLInstaller.Console.Resources.resx'</Item>
+           <Item>License</Item>
+           <Item>viewkind</Item>
+           <Item>{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\froman\fcharset0 Times New Roman;}{\f1\fswiss\fcharset0 Arial;}}&#xD;&#xA;{\*\generator Msftedit 5.41.21.2500;}\viewkind4\uc1\pard\sb100\sa100\f0\fs24 Microsoft Public License (Ms-PL)\line\line This license governs use of the accompanying software. If y...</Item>
+          </Issue>
+          <Notes>
+           <User Name="bschloz">
+            <Note Id="0" />
+           </User>
+          </Notes>
+         </Message>
+        </Messages>
+       </Resource>
+      </Resources>
+     </Module>
+    </Modules>
+   </Target>
+  </Targets>
+  <Notes>
+   <User Name="bschloz">
+    <Note Id="0" Modified="2009-10-14 22:22:52Z">Text is from an external source.</Note>
+    <Note Id="1" Modified="2009-10-14 22:23:10Z">Clear() is method which apparently breaks this rule.</Note>
+    <Note Id="2" Modified="2009-10-14 22:24:17Z">This is a console app which you would not want to sleep for this operation.</Note>
+   </User>
+  </Notes>
+  <Rules>
+   <Rule TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210">
+    <Resolution Name="NoStrongName">Sign {0} with a strong name key.</Resolution>
+   </Rule>
+   <Rule TypeName="DisposableFieldsShouldBeDisposed" Category="Microsoft.Usage" CheckId="CA2213">
+    <Resolution Name="Default">{0} contains field {1} that is of IDisposable type: {2}. Change the Dispose method on {0} to call Dispose or Close on this field.</Resolution>
+   </Rule>
+   <Rule TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031">
+    <Resolution Name="Default">Modify {0} to catch a more specific exception than {1} or rethrow the exception.</Resolution>
+   </Rule>
+   <Rule TypeName="DoNotUseTimersThatPreventPowerStateChanges" Category="Microsoft.Mobility" CheckId="CA1601">
+    <Resolution Name="Default">Modify the call to {0} in method {1} to set the timer interval to a value that's greater than or equal to one second.</Resolution>
+   </Rule>
+   <Rule TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709">
+    <Resolution Name="Assembly">Correct the casing of '{0}' in assembly name {1} by changing it to '{2}'.</Resolution>
+   </Rule>
+   <Rule TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704">
+    <Resolution Name="MemberParameter">In method {0}, correct the spelling of '{1}' in parameter name {2} or remove it entirely if it represents any sort of Hungarian notation.</Resolution>
+   </Rule>
+   <Rule TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034">
+    <Resolution Name="Default">Do not nest type {0}. Alternatively, change its accessibility so that it is not externally visible.</Resolution>
+   </Rule>
+   <Rule TypeName="ResourceStringCompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1701">
+    <Resolution Name="StringResourceShouldBeCompoundWord">In resource {0}, referenced by name '{1}' the discrete term '{2}' in string value '{3}' should be expressed as a compound word. If '{2}' refers to an API identifier, case it as '{4}', otherwise split it into two words separated by a space.</Resolution>
+   </Rule>
+   <Rule TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703">
+    <Resolution Name="StringResource">In resource {0}, referenced by name '{1}', correct the spelling of '{2}' in string value '{3}'.</Resolution>
+   </Rule>
+   <Rule TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304">
+    <Resolution Name="Default">Because the behavior of {0} could vary based on the current user's locale settings, replace this call in {1} with a call to {2}. If the result of {2} will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'CultureInfo' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Resolution>
+   </Rule>
+   <Rule TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305">
+    <Resolution Name="Default">Because the behavior of {0} could vary based on the current user's locale settings, replace this call in {1} with a call to {2}. If the result of {2} will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Resolution>
+   </Rule>
+   <Rule TypeName="SpecifyStringComparison" Category="Microsoft.Globalization" CheckId="CA1307">
+    <Resolution Name="Default">{0} makes a call to {1} that does not explicitly provide a StringComparison. This should be replaced with a call to {2}.</Resolution>
+   </Rule>
+   <Rule TypeName="StaticHolderTypesShouldNotHaveConstructors" Category="Microsoft.Design" CheckId="CA1053">
+    <Resolution Name="Default">Remove the public constructors from {0}.</Resolution>
+   </Rule>
+   <Rule TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024">
+    <Resolution Name="Default">Change {0} to a property if appropriate.</Resolution>
+   </Rule>
+  </Rules>
+ </FxCopReport>
+</FxCopProject>
