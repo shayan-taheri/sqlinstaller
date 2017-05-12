@@ -15,14 +15,14 @@ with a relational database management system (RDBMS). It supports a wide range o
 # SQL Installer.NET Guide
 
 * __Chapter 1 – Development__
---* __Database Version Management__
---* __Script Folder Layout__
---* __Script Extensions__
---* __Script Formatting__
---* __Database vs User/Schema__
+   * __Database Version Management__
+   * __Script Folder Layout__
+   * __Script Extensions__
+   * __Script Formatting__
+   * __Database vs User/Schema__
 * __Chapter 2 – Running__
---* __Install__
---* __Upgrade__
+   * __Install__
+   * __Upgrade__
 * __Appendix A: Configuration File Reference__
 * __Appendix B: Adding/Customizing Data Providers__
 
@@ -45,11 +45,11 @@ The Upgrade folder contains scripts necessary to upgrade a database from version
 recognize that there is an existing database and execute the scripts in each ‘Upgrade’ folder starting after the current release and ending with the 
 last folder which would become the current release (03.00 in the example here):
 
-* Upgrade
---* 01.00
---* 01.05
---* 02.10
---* 03.00
+* __Upgrade__
+   * 01.00
+   * 01.05
+   * 02.10
+   * 03.00
 
 > _SQL Installer.NET_ uses a default naming convention to differentiate between the different types of SQL objects (which can be overridden)
 
@@ -64,8 +64,8 @@ last folder which would become the current release (03.00 in the example here):
 7. PostInstall.sql - Anything needed post installation (e.g. bootstrap data)
 8. ForeignKey.sql
 
-Once the database is broken down into its separate pieces each in their own source file and into the hierarchy as illustrated, you would then 
-check these into source control.
+> Once the database is broken down into its separate pieces each in their own source file and into the hierarchy as illustrated, you would then 
+> check these into source control.
  
 ## Script Formatting
 
@@ -94,7 +94,7 @@ INSERT INTO Categories (CategoryID, CategoryName, Description)
 VALUES (8, 'Seafood', 'Seaweed and fish');
 END;
 /
-```sql
+```
 
 > __Note:__ Forward slash must be at the end of the line or by itself on a separate line
 
@@ -157,7 +157,7 @@ ScriptExtension="sql" InstallPath="Install" UpgradePath="Upgrade">
       <FileType Name="Table" Description="TABLES" IsDisabled="false" IsGlobal="false" HaltOnError="false"/>
    </FileTypes>
 </Parameters>
-```xml
+```
 
 __Options__ - specify which options are in effect.
 * Create – create database if it does not exist
@@ -234,4 +234,4 @@ CREATE OR REPLACE VIEW db_version AS SELECT CAST('{1};{2}' AS VARCHAR(512)) AS v
       </Provider>
    </Providers>
 </ProviderFactory>
-```xml
+```
