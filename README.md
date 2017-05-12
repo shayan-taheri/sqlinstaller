@@ -1,5 +1,7 @@
 # SQL Installer.NET
 
+> __Official NuGet Package:__ [SQL Installer.NET](https://www.nuget.org/packages/SQLInstaller.NET/)
+
 __SQL Installer.NET__ is a toolset which assists in the _development, deployment, and maintenance_ of applications which interface 
 with a relational database management system (RDBMS). It supports a wide range of RDBMS products including: 
 
