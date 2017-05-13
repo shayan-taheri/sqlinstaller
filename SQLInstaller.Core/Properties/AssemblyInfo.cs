@@ -2,7 +2,7 @@
 // <copyright file="AssemblyInfo.cs" company="JHOB Technologies, LLC">
 //     Copyright © JHOB Technologies, LLC. All rights reserved.
 // </copyright>
-// <license>Microsoft Public License</license>
+// <license>GNU General Public License v3.0</license>
 // <author>Brian Schloz</author>
 //-----------------------------------------------------------------------
 using System;
@@ -41,6 +41,6 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("1.2.11.0")]
-[assembly: AssemblyFileVersion("1.2.11.0")]
+[assembly: AssemblyVersion("1.2.12.0")]
+[assembly: AssemblyFileVersion("1.2.12.0")]
 [assembly: NeutralResourcesLanguageAttribute("en-US")]

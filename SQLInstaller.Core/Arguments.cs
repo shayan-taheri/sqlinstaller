@@ -2,7 +2,7 @@
 // <copyright file="Arguments.cs" company="JHOB Technologies, LLC">
 //     Copyright © JHOB Technologies, LLC. All rights reserved.
 // </copyright>
-// <license>Microsoft Public License</license>
+// <license>GNU General Public License v3.0</license>
 // <author>Brian Schloz</author>
 //-----------------------------------------------------------------------
 namespace SQLInstaller.Core

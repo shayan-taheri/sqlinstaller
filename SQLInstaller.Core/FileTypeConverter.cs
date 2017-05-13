@@ -2,21 +2,21 @@
 // <copyright file="FileTypeConverter.cs" company="JHOB Technologies, LLC">
 //     Copyright © JHOB Technologies, LLC. All rights reserved.
 // </copyright>
-// <license>Microsoft Public License</license>
+// <license>GNU General Public License v3.0</license>
 // <author>Brian Schloz</author>
 //-----------------------------------------------------------------------
 namespace SQLInstaller.Core
 {
-	using System;
+    using System;
     using System.Collections.Generic;
-	using System.ComponentModel;
-	using System.Globalization;
+    using System.ComponentModel;
+    using System.Globalization;
 
-	/// <summary>
-	/// Type converter for provider passed as an argument/string.
-	/// </summary>
-	public sealed class FileTypeConverter : TypeConverter
-	{
+    /// <summary>
+    /// Type converter for provider passed as an argument/string.
+    /// </summary>
+    public sealed class FileTypeConverter : TypeConverter
+    {
         /// <summary>
         /// Method to determine if conversion is possible.
         /// </summary>
@@ -50,5 +50,5 @@ namespace SQLInstaller.Core
 
             return fileTypes;
         }
-	}
+    }
 }

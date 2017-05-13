@@ -7,3 +7,6 @@
 /SQLInstaller.Core/bin/Debug
 /SQLInstaller.Core/obj/Debug
 /.vs/SQL Installer.NET/v14
+/SQLInstaller.Console/obj/Release
+/SQLInstaller.Core/bin/Release
+/SQLInstaller.Core/obj/Release

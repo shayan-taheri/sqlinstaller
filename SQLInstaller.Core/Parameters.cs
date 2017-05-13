@@ -2,46 +2,46 @@
 // <copyright file="Parameters.cs" company="JHOB Technologies, LLC">
 //     Copyright © JHOB Technologies, LLC. All rights reserved.
 // </copyright>
-// <license>Microsoft Public License</license>
+// <license>GNU General Public License v3.0</license>
 // <author>Brian Schloz</author>
 //-----------------------------------------------------------------------
 namespace SQLInstaller.Core
 {
-	using System;
-	using System.Collections.Generic;
-	using System.ComponentModel;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.IO;
-	using System.IO.IsolatedStorage;
-	using System.Security;
-	using System.Security.Cryptography;
-	using System.Security.Principal;
-	using System.Text;
-	using System.Xml;
-	using System.Xml.Serialization;
+    using System.IO.IsolatedStorage;
+    using System.Security;
+    using System.Security.Cryptography;
+    using System.Security.Principal;
+    using System.Text;
+    using System.Xml;
+    using System.Xml.Serialization;
 
-	/// <summary>
-	/// Parameters class.
-	/// </summary>
-	[Serializable]
-	public sealed class Parameters : IDisposable
-	{
-		#region Fields
+    /// <summary>
+    /// Parameters class.
+    /// </summary>
+    [Serializable]
+    public sealed class Parameters : IDisposable
+    {
+        #region Fields
 
         /// <summary>
         /// A value indicating whether the object has been disposed.
         /// </summary>
-		private bool isDisposed;
+        private bool isDisposed;
 
         /// <summary>
         /// The RSA service provider.
         /// </summary>
-		[NonSerializedAttribute]
-		private RSACryptoServiceProvider rsa;
+        [NonSerializedAttribute]
+        private RSACryptoServiceProvider rsa;
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the Parameters class.
@@ -57,8 +57,8 @@ namespace SQLInstaller.Core
         /// <summary>
         /// Initializes a new instance of the Parameters class.
         /// </summary>
-		public Parameters()
-		{
+        public Parameters()
+        {
             this.ConnectionString = Constants.DefaultConnString;
             this.Options = this.Options.Add(Options.Create | Options.Verbose);
             this.Provider = new Provider();
@@ -73,14 +73,14 @@ namespace SQLInstaller.Core
             TypeDescriptor.AddAttributes(typeof(List<FileType>), new TypeConverterAttribute(typeof(FileTypeConverter)));
         }
 
-		#endregion
+        #endregion
 
-		#region Properties
+        #region Properties
 
         /// <summary>
         /// Gets the list of file types.
         /// </summary>
-		public List<FileType> FileTypes { get; set; }
+        public List<FileType> FileTypes { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether to serialize.
@@ -96,91 +96,91 @@ namespace SQLInstaller.Core
         /// <summary>
         /// Gets or sets the configuration path.
         /// </summary>
-		[XmlIgnore]
-		public string ConfigPath { get; set; }
+        [XmlIgnore]
+        public string ConfigPath { get; set; }
 
         /// <summary>
         /// Gets or sets the database name.
         /// </summary>
-		[XmlElement]
+        [XmlElement]
         [Required(ErrorMessageResourceName = "ErrorArgument", ErrorMessageResourceType = typeof(Resources))]
         public string Database { get; set; }
 
         /// <summary>
         /// Gets or sets the database provider.
         /// </summary>
-		public Provider Provider { get; set; }
+        public Provider Provider { get; set; }
         
         /// <summary>
         /// Gets a value indicating whether to serialize.
         /// </summary>
-		[Browsable(false)]
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		[XmlIgnore]
-		public bool ProviderSpecified
-		{
-			get { return !string.IsNullOrEmpty(this.Provider.Name); }
-		}
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [XmlIgnore]
+        public bool ProviderSpecified
+        {
+            get { return !string.IsNullOrEmpty(this.Provider.Name); }
+        }
 
         /// <summary>
         /// Gets or sets the connection string.
         /// </summary>
-		[XmlElement]
-		public string ConnectionString { get; set; }
+        [XmlElement]
+        public string ConnectionString { get; set; }
 
         /// <summary>
         /// Gets the script path.
         /// </summary>
-		[XmlIgnore]
-		public string ScriptPath
-		{
-			get 
-			{ 
-				string scriptPath = Path.GetDirectoryName(this.ConfigPath);
+        [XmlIgnore]
+        public string ScriptPath
+        {
+            get 
+            { 
+                string scriptPath = Path.GetDirectoryName(this.ConfigPath);
                 if (string.IsNullOrEmpty(scriptPath))
                 {
                     scriptPath = Constants.CurrentDir;
                 }
 
-				return scriptPath;
-			}
-		}
+                return scriptPath;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the options.
         /// </summary>
-		[XmlAttribute]
-		public Options Options { get; set; }
+        [XmlAttribute]
+        public Options Options { get; set; }
 
         /// <summary>
         /// Gets or sets the script extension.
         /// </summary>
-		[XmlAttribute]
-		public string ScriptExtension { get; set; }
+        [XmlAttribute]
+        public string ScriptExtension { get; set; }
 
         /// <summary>
         /// Gets or sets the install path.
         /// </summary>
-		[XmlAttribute]
-		public string InstallPath { get; set; }
+        [XmlAttribute]
+        public string InstallPath { get; set; }
 
         /// <summary>
         /// Gets or sets the upgrade path.
         /// </summary>
-		[XmlAttribute]
-		public string UpgradePath { get; set; }
+        [XmlAttribute]
+        public string UpgradePath { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether or not the connection string has been encrypted.
         /// </summary>
-		[XmlAttribute]
-		public bool IsProtected { get; set; }
+        [XmlAttribute]
+        public bool IsProtected { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to prompt the user for upgrade.
         /// </summary>
-		[XmlAttribute]
-		public bool NoPrompt { get; set; }
+        [XmlAttribute]
+        public bool NoPrompt { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to output the configuration xml.
@@ -192,33 +192,33 @@ namespace SQLInstaller.Core
         /// Gets a value indicating whether to serialize.
         /// </summary>
         [Browsable(false)]
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		[XmlIgnore]
-		public bool NoPromptSpecified
-		{
-			get { return this.NoPrompt; }
-		}
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [XmlIgnore]
+        public bool NoPromptSpecified
+        {
+            get { return this.NoPrompt; }
+        }
 
-		#endregion
+        #endregion
 
-		#region Public Methods
+        #region Public Methods
 
         /// <summary>
         /// Method to load the configuration from the path.
         /// </summary>
         /// <param name="configPath">The path to use to load the configuration.</param>
         /// <returns>The parameters object.</returns>
-		public static Parameters Load(string configPath)
-		{
-			Parameters p = null;
+        public static Parameters Load(string configPath)
+        {
+            Parameters p = null;
 
-			XmlSerializer s = new XmlSerializer(typeof(Parameters));
-			using (StreamReader r = new StreamReader(configPath))
-			{
-				p = s.Deserialize(r) as Parameters;
-			}
+            XmlSerializer s = new XmlSerializer(typeof(Parameters));
+            using (StreamReader r = new StreamReader(configPath))
+            {
+                p = s.Deserialize(r) as Parameters;
+            }
 
-			p.ConfigPath = configPath;
+            p.ConfigPath = configPath;
 
             if (!p.IsProtected)
             {
@@ -229,29 +229,29 @@ namespace SQLInstaller.Core
                 p.RevealConnectionString();
             }
 
-			return p;
-		}
+            return p;
+        }
 
         /// <summary>
         /// Writes the configuration to a file.
         /// </summary>
-		public void Write()
-		{
-			StreamWriter sw = null;
+        public void Write()
+        {
+            StreamWriter sw = null;
 
-			try
-			{
-				sw = new StreamWriter(this.ConfigPath);
-				this.WriteXml(sw.BaseStream);
-			}
-			finally
-			{
+            try
+            {
+                sw = new StreamWriter(this.ConfigPath);
+                this.WriteXml(sw.BaseStream);
+            }
+            finally
+            {
                 if (sw != null)
                 {
                     sw.Close();
                 }
-			}
-		}
+            }
+        }
 
         /// <summary>
         /// Method to encrypt the database connection string.
@@ -271,85 +271,85 @@ namespace SQLInstaller.Core
             this.ConnectionString = saveString;
         }
 
-		#endregion
+        #endregion
 
-		#region IDisposable Members
+        #region IDisposable Members
 
         /// <summary>
         /// Method to dispose the object.
         /// </summary>
-		public void Dispose()
-		{
+        public void Dispose()
+        {
             if (!this.isDisposed)
-			{
+            {
                 this.rsa.Clear();
-				GC.SuppressFinalize(this);
+                GC.SuppressFinalize(this);
                 this.isDisposed = true;
-			}
-		}
+            }
+        }
 
-		#endregion
+        #endregion
 
-		#region Private Methods
+        #region Private Methods
 
         /// <summary>
         /// Method to write the XML to a stream.
         /// </summary>
         /// <param name="stream">The stream to write to.</param>
-		private void WriteXml(Stream stream)
-		{
-			XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
-			ns.Add(string.Empty, string.Empty);
-			XmlSerializer s = new XmlSerializer(this.GetType());
-			XmlWriterSettings settings = new XmlWriterSettings();
-			settings.OmitXmlDeclaration = true;
-			settings.Encoding = Encoding.UTF8;
-			settings.IndentChars = Constants.Tab;
-			settings.Indent = true;
-			XmlWriter w = XmlWriter.Create(stream, settings);
-			s.Serialize(w, this, ns);
-		}
+        private void WriteXml(Stream stream)
+        {
+            XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
+            ns.Add(string.Empty, string.Empty);
+            XmlSerializer s = new XmlSerializer(this.GetType());
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.OmitXmlDeclaration = true;
+            settings.Encoding = Encoding.UTF8;
+            settings.IndentChars = Constants.Tab;
+            settings.Indent = true;
+            XmlWriter w = XmlWriter.Create(stream, settings);
+            s.Serialize(w, this, ns);
+        }
         
         /// <summary>
         /// Method to unencrypt the connection string.
         /// </summary>
-		private void RevealConnectionString()
-		{
-			RijndaelManaged aes = this.CreateCipher();
+        private void RevealConnectionString()
+        {
+            RijndaelManaged aes = this.CreateCipher();
 
-			try
-			{
-				ICryptoTransform transform = aes.CreateDecryptor();
-				byte[] connectionStringBytes = Convert.FromBase64String(this.ConnectionString);
-				byte[] plainText = transform.TransformFinalBlock(connectionStringBytes, 0, connectionStringBytes.Length);
-				this.ConnectionString = Encoding.UTF8.GetString(plainText);
-			}
-			catch (FormatException) 
+            try
+            {
+                ICryptoTransform transform = aes.CreateDecryptor();
+                byte[] connectionStringBytes = Convert.FromBase64String(this.ConnectionString);
+                byte[] plainText = transform.TransformFinalBlock(connectionStringBytes, 0, connectionStringBytes.Length);
+                this.ConnectionString = Encoding.UTF8.GetString(plainText);
+            }
+            catch (FormatException) 
             { 
             }
-			catch (CryptographicException) 
+            catch (CryptographicException) 
             { 
             }
 
-			this.IsProtected = false;
-		}
+            this.IsProtected = false;
+        }
 
         /// <summary>
         /// Method to create the encryption cipher.
         /// </summary>
         /// <returns>The encryption cypher.</returns>
-		private RijndaelManaged CreateCipher()
-		{
-			RijndaelManaged aes = new RijndaelManaged();
-			IsolatedStorageFile isf = null;
-			try
-			{
-				isf = IsolatedStorageFile.GetUserStoreForAssembly();
-			}
-			catch (SecurityException)
-			{
-				isf = IsolatedStorageFile.GetMachineStoreForAssembly();
-			}
+        private RijndaelManaged CreateCipher()
+        {
+            RijndaelManaged aes = new RijndaelManaged();
+            IsolatedStorageFile isf = null;
+            try
+            {
+                isf = IsolatedStorageFile.GetUserStoreForAssembly();
+            }
+            catch (SecurityException)
+            {
+                isf = IsolatedStorageFile.GetMachineStoreForAssembly();
+            }
 
             FileMode fm = FileMode.Open;
             FileAccess fa = FileAccess.Read;
@@ -360,15 +360,15 @@ namespace SQLInstaller.Core
                 fa = FileAccess.ReadWrite;
             }
        
-			using (IsolatedStorageFileStream ifs = new IsolatedStorageFileStream(Constants.CipherFile, fm, fa, isf))
-			{
-				string cipherData = string.Empty;
-				if (fm == FileMode.Open)
-				{
-					using (StreamReader sr = new StreamReader(ifs))
-					{
-						cipherData = sr.ReadLine();
-						string[] cipherInit = cipherData.Split(new char[] { Constants.Pipe });
+            using (IsolatedStorageFileStream ifs = new IsolatedStorageFileStream(Constants.CipherFile, fm, fa, isf))
+            {
+                string cipherData = string.Empty;
+                if (fm == FileMode.Open)
+                {
+                    using (StreamReader sr = new StreamReader(ifs))
+                    {
+                        cipherData = sr.ReadLine();
+                        string[] cipherInit = cipherData.Split(new char[] { Constants.Pipe });
                         if (cipherInit.Length == 2)
                         {
                             aes.IV = this.rsa.Decrypt(Convert.FromBase64String(cipherInit[0]), true);
@@ -379,26 +379,26 @@ namespace SQLInstaller.Core
                             throw new ArgumentException(Resources.ErrorInvalidCipherData);
                         }
 
-						sr.Close();
-					}
-				}
-				else
-				{
+                        sr.Close();
+                    }
+                }
+                else
+                {
                     cipherData = Convert.ToBase64String(this.rsa.Encrypt(aes.IV, true))
                         + Constants.Pipe + Convert.ToBase64String(this.rsa.Encrypt(aes.Key, true));
 
-					using (StreamWriter sw = new StreamWriter(ifs))
-					{
-						sw.WriteLine(cipherData);
-						sw.Flush();
-						sw.Close();
-					}
-				}
-			}
+                    using (StreamWriter sw = new StreamWriter(ifs))
+                    {
+                        sw.WriteLine(cipherData);
+                        sw.Flush();
+                        sw.Close();
+                    }
+                }
+            }
 
-			return aes;
-		}
+            return aes;
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

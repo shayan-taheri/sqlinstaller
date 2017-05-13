@@ -2,46 +2,46 @@
 // <copyright file="Spinner.cs" company="JHOB Technologies, LLC">
 //     Copyright © JHOB Technologies, LLC. All rights reserved.
 // </copyright>
-// <license>Microsoft Public License</license>
+// <license>GNU General Public License v3.0</license>
 // <author>Brian Schloz</author>
 //-----------------------------------------------------------------------
 namespace SQLInstaller.Console
 {
-	using System;
+    using System;
     using System.Diagnostics;
     using System.Runtime.InteropServices;
-	using System.Timers;
+    using System.Timers;
 
-	/// <summary>
-	/// Spinning/flaming logo.
-	/// </summary>
-	internal sealed class Spinner : IDisposable
+    /// <summary>
+    /// Spinning/flaming logo.
+    /// </summary>
+    internal sealed class Spinner : IDisposable
     {
         /// <summary>
         /// A value indicating whether the object has been disposed.
         /// </summary>
-		private bool isDisposed;
+        private bool isDisposed;
 
         /// <summary>
         /// The spin counter.
         /// </summary>
-		private int counter;
+        private int counter;
 
         /// <summary>
         /// The spin timer.
         /// </summary>
-		private Timer timer;
+        private Timer timer;
 
         /// <summary>
         /// The spin text sequence.
         /// </summary>
-		private string[] frame = { "|", "/", "-", "\\" };
+        private string[] frame = { "|", "/", "-", "\\" };
 
         /// <summary>
         /// Initializes a new instance of the Spinner class.
         /// </summary>
-		public Spinner()
-		{
+        public Spinner()
+        {
             this.timer = new Timer(Constants.MinSpinTimeout);
             this.timer.Elapsed += new ElapsedEventHandler(this.Timer_Elapsed);
             this.timer.Enabled = false;
@@ -52,57 +52,57 @@ namespace SQLInstaller.Console
             this.timer.AutoReset = proc != null
                 && (string.Compare(proc.ProcessName, "cmd", StringComparison.OrdinalIgnoreCase) == 0
                 || string.Compare(proc.ProcessName, "powershell", StringComparison.OrdinalIgnoreCase) == 0);
-		}
+        }
 
         /// <summary>
         /// Method to begin spinning.
         /// </summary>
         /// <param name="timeout">How often to refresh.</param>
-		public void Start(double timeout)
-		{
-			if (this.timer.AutoReset && timeout >= Constants.MinSpinTimeout)
-			{
+        public void Start(double timeout)
+        {
+            if (this.timer.AutoReset && timeout >= Constants.MinSpinTimeout)
+            {
                 this.timer.Interval = timeout;
                 this.timer.Enabled = true;
-			}
-		}
+            }
+        }
 
         /// <summary>
         /// Method to stop spinning.
         /// </summary>
-		public void Stop()
-		{
+        public void Stop()
+        {
             this.timer.Enabled = false;
-		}
+        }
 
-		#region IDisposable Members
+        #region IDisposable Members
 
         /// <summary>
         /// Method to dispose of the object.
         /// </summary>
-		public void Dispose()
-		{
+        public void Dispose()
+        {
             if (!this.isDisposed)
-			{
+            {
                 this.timer.Dispose();
-				GC.SuppressFinalize(this);
+                GC.SuppressFinalize(this);
                 this.isDisposed = true;
-			}
-		}
+            }
+        }
 
-		#endregion
+        #endregion
 
         /// <summary>
         /// Method for timer callback.
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The elapsed event arguments.</param>
-		public void Timer_Elapsed(object sender, ElapsedEventArgs e)
-		{
+        public void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
             this.counter++;
             Console.Write(this.frame[this.counter % this.frame.Length]);
             Console.SetCursorPosition(Console.CursorLeft - this.frame[this.counter % this.frame.Length].Length, Console.CursorTop);
-		}
+        }
 
         #region Generated code for P/Invoke
 

@@ -104,7 +104,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Resources\data_replace.ico" />
-    <None Include="Resources\License.rtf" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
