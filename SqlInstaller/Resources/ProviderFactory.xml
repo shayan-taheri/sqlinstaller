@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProviderFactory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="ProviderFactory">
+  <!--
+  The ProviderFactory configuration XML is used by SQL Installer.NET to control interaction
+  with the underlying ADO.NET data provider. This file is an embedded resource within the
+  binary. However, if you rename the ProviderFactory.xml.orig (remove orig) found within
+  the SQL Installer.NET installation folder, you can customize these per installation. 
+  There are five scripts that you can customize:
+  
+  1.	Exists: checks to see if the target database already exists. Will replace {0} 
+    with the database name passed in from the configuration (SQLInstaller.xml). 
+    Simply return a numeric value greater than zero if the database exists. 
+    Note: for Oracle you will check for a USER account.
+  2.	Drop: drops the target database (or USER if Oracle). Will replace {0} with the
+    database name.
+  3.	Create: creates the target database (or USER if Oracle). Will replace {0} with
+    the database name.
+  4.	GetVersion: gets the version information. Will replace {0} with the
+    database name.
+  5.	SetVersion: sets the version information. Will replace {0} with the 
+    database name, {1} with the version, and {2} with the user running the install.
+    
+  The Provider element is the same Provider used within the SQLInstaller.xml config file.
+  You can override any or all of the Provider elements/attributes within SQLInstaller.xml. These
+  will be merged back with the global ProviderFactory xml at runtime.
+  
+  You may also define your own provider within either the ProviderFactory.xml file or within
+  each of your SQLInstaller.xml configuration files respectively. This allows you to add
+  support for other ADO.NET data providers as necessary.
+  -->
+  <Providers>
+    <Provider Name="Firebird" InvariantName="FirebirdSql.Data.FirebirdClient">
+      <Scripts>
+        <Script Type="GetVersion">SELECT version_info FROM db_version</Script>
+        <Script Type="SetVersion">RECREATE VIEW db_version (version_info) AS SELECT '{1};{2}' FROM rdb$database</Script>
+      </Scripts>
+    </Provider>
+    <Provider Name="MySql" InvariantName="MySql.Data">
+      <Scripts>
+        <Script Type="Exists">SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '{0}'</Script>
+        <Script Type="Drop">SET FOREIGN_KEY_CHECKS=0;DROP DATABASE {0};SET FOREIGN_KEY_CHECKS=1;</Script>
+        <Script Type="Create">CREATE DATABASE {0}</Script>
+        <Script Type="GetVersion">SELECT version_info FROM db_version</Script>
+        <Script Type="SetVersion">CREATE OR REPLACE VIEW db_version AS SELECT '{1};{2}' AS version_info</Script>
+      </Scripts>
+    </Provider>
+    <Provider Name="Oracle" InvariantName="Oracle.ManagedDataAccess">
+      <Scripts>
+        <Script Type="Exists">SELECT COUNT(*) FROM all_users WHERE username = UPPER('{0}')</Script>
+        <Script Type="Drop">DROP USER {0} CASCADE</Script>
+        <Script Type="Create">
+          BEGIN
+            EXECUTE IMMEDIATE 'CREATE USER {0} IDENTIFIED EXTERNALLY';
+            EXECUTE IMMEDIATE 'GRANT UNLIMITED TABLESPACE TO {0}';
+          END;/
+        </Script>
+        <Script Type="GetVersion">SELECT VERSION_INFO || ';' || UPGRADEBY FROM {0}.DB_VERSION</Script>
+        <Script Type="SetVersion">CREATE OR REPLACE VIEW {0}.DB_VERSION AS SELECT '{1}' AS VERSION_INFO, '{2}' AS UPGRADEBY FROM DUAL</Script>
+      </Scripts>
+    </Provider>
+    <Provider Name="PostGres" InvariantName="Npgsql">
+      <Scripts>
+        <Script Type="Exists">SELECT COUNT(*) FROM pg_catalog.pg_database WHERE datname = '{0}'</Script>
+        <Script Type="Drop">DROP DATABASE {0}</Script>
+        <Script Type="Create">CREATE DATABASE {0}</Script>
+        <Script Type="GetVersion">SELECT version_info FROM db_version</Script>
+        <Script Type="SetVersion">CREATE OR REPLACE VIEW db_version AS SELECT CAST('{1};{2}' AS VARCHAR(512)) AS version_info</Script>
+      </Scripts>
+    </Provider>
+    <Provider Name="SQLite" InvariantName="System.Data.SQLite">
+      <Scripts>
+        <Script Type="GetVersion">SELECT version_info FROM db_version</Script>
+        <Script Type="SetVersion">DROP VIEW IF EXISTS db_version; CREATE VIEW db_version AS SELECT CAST('{1};{2}' AS VARCHAR(512)) AS version_info</Script>
+      </Scripts>
+    </Provider>
+    <Provider Name="SqlServer" InvariantName="System.Data.SqlClient">
+      <Scripts>
+        <Script Type="Exists">SELECT COUNT(*) FROM sysdatabases WHERE '[' + name + ']' = QUOTENAME('{0}')</Script>
+        <Script Type="Drop">ALTER DATABASE [{0}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE [{0}];</Script>
+        <Script Type="Create">
+          USE master;
+          DECLARE @data_path nvarchar(512);
+          SET @data_path = (SELECT SUBSTRING(physical_name, 1, CHARINDEX(N'master.mdf', LOWER(physical_name)) - 1)
+          FROM master.sys.master_files
+          WHERE database_id = 1 AND file_id = 1);
+          -- Create database
+          EXECUTE( 'CREATE DATABASE [{0}] ON  PRIMARY
+          ( NAME = [{0}], FILENAME = ''' + @data_path + '{0}.mdf'' )
+          LOG ON
+          ( NAME = [{0}_log], FILENAME = ''' + @data_path + '{0}_log.ldf'' )'
+          );
+        </Script>
+        <Script Type="GetVersion">
+          SELECT CAST(ISNULL(V.value,'') AS VARCHAR(255)) + ';' + CAST(ISNULL(U.value,'') AS VARCHAR(1024))
+          FROM fn_listextendedproperty('Version', default, default, default, default, default, default) V,
+          fn_listextendedproperty('UpdatedBy', default, default, default, default, default, default) U
+        </Script>
+        <Script Type="SetVersion">
+          IF NOT EXISTS (SELECT value FROM fn_listextendedproperty('Version', default, default, default, default, default, default))
+            EXEC sp_addextendedproperty 'Version', '{1}'
+          ELSE
+            EXEC sp_updateextendedproperty 'Version', '{1}'
+          IF NOT EXISTS (SELECT value FROM fn_listextendedproperty('UpdatedBy', default, default, default, default, default, default))
+            EXEC sp_addextendedproperty 'UpdatedBy', '{2}'
+          ELSE
+            EXEC sp_updateextendedproperty 'UpdatedBy', '{2}'
+        </Script>
+      </Scripts>
+    </Provider>
+    <Provider Name="Azure" InvariantName="System.Data.SqlClient">
+      <Scripts>
+        <Script Type="Exists">SELECT COUNT(*) FROM sysdatabases WHERE '[' + name + ']' = QUOTENAME('{0}')</Script>
+        <Script Type="Drop">DROP DATABASE [{0}]</Script>
+        <Script Type="Create">CREATE DATABASE [{0}]</Script>
+        <Script Type="GetVersion">SELECT '1.0;' + CURRENT_USER</Script>
+        <Script Type="SetVersion">GO</Script>
+      </Scripts>
+    </Provider>
+    <Provider Name="Teradata" InvariantName="Teradata.Client.Provider">
+      <Scripts>
+        <Script Type="Exists">SELECT COUNT(*) FROM dbc.dbase WHERE databasename='{0}'</Script>
+        <Script Type="Drop">MODIFY DATABASE {0} AS DROP DEFAULT JOURNAL TABLE; DELETE DATABASE {0}; DROP DATABASE {0};</Script>
+        <Script Type="Create">CREATE DATABASE {0} AS PERM=10e6, SPOOL=20e6</Script>
+        <Script Type="GetVersion">SELECT VERSION_INFO || ';' || UPGRADEBY FROM DB_VERSION</Script>
+        <Script Type="SetVersion">REPLACE VIEW DB_VERSION AS SELECT '{1}' AS VERSION_INFO, '{2}' AS UPGRADEBY</Script>
+      </Scripts>
+    </Provider>
+  </Providers>
+</ProviderFactory>

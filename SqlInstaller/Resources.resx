@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="data_replace" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\data_replace.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AskToVersion" xml:space="preserve">
+    <value> to Version </value>
+  </data>
+  <data name="AskUpgrade" xml:space="preserve">
+    <value>Upgrade </value>
+  </data>
+  <data name="AskYesNo" xml:space="preserve">
+    <value> (Y/N)? </value>
+  </data>
+  <data name="StatusAlreadyUpgraded" xml:space="preserve">
+    <value> has already been upgraded to </value>
+  </data>
+  <data name="StatusBy" xml:space="preserve">
+    <value> by </value>
+  </data>
+  <data name="StatusCompletedWith" xml:space="preserve">
+    <value>Completed with </value>
+  </data>
+  <data name="StatusConnecting" xml:space="preserve">
+    <value>Connecting to data source...</value>
+  </data>
+  <data name="StatusDone" xml:space="preserve">
+    <value>Done.</value>
+  </data>
+  <data name="StatusErrorCount" xml:space="preserve">
+    <value> error(s).</value>
+  </data>
+  <data name="ExitingWithNewTemplate" xml:space="preserve">
+    <value>. Creating a new template. Please edit as appropriate. Exiting.</value>
+  </data>
+  <data name="MissingParmFile" xml:space="preserve">
+    <value>Missing parameters xml file:</value>
+  </data>
+  <data name="ErrorGeneric" xml:space="preserve">
+    <value>sqlinstaller : error : {0}</value>
+  </data>
+  <data name="ErrorArgument" xml:space="preserve">
+    <value>Missing parameter: /{0}</value>
+  </data>
+  <data name="ErrorAssembly" xml:space="preserve">
+    <value>{1}Could not load file or assembly '{0}'{1}{1}NOTE: for SQL Server, you will need to install the SMO toolkit.{1}A link to SMO is provided for you at http://sqlinstaller.codeplex.com.{1}</value>
+  </data>
+  <data name="ErrorConnectionMethod" xml:space="preserve">
+    <value>Cannot find connection method: </value>
+  </data>
+  <data name="ErrorEnumAppend" xml:space="preserve">
+    <value>Could not append value from enumerated type '{0}'.</value>
+  </data>
+  <data name="ErrorEnumRemove" xml:space="preserve">
+    <value>Could not remove value from enumerated type '{0}'.</value>
+  </data>
+  <data name="ErrorFile" xml:space="preserve">
+    <value>{0} : error : {1}</value>
+  </data>
+  <data name="ErrorInvalidCipherData" xml:space="preserve">
+    <value>The cipher data is invalid. Cannot decrypt connection string.</value>
+  </data>
+  <data name="ErrorMissingDataSource" xml:space="preserve">
+    <value>Missing Data Source key from connection string</value>
+  </data>
+  <data name="ErrorMissingStatement" xml:space="preserve">
+    <value>Error: this provider requires an SQL statement. None were provided. Check your config file: </value>
+  </data>
+  <data name="ErrorSchemaPrep" xml:space="preserve">
+    <value>You must prepare the schema first.</value>
+  </data>
+  <data name="ErrorUnknownProvider" xml:space="preserve">
+    <value>ERROR unknown data provider: </value>
+  </data>
+  <data name="InvalidReserved" xml:space="preserve">
+    <value>You cannot have an Upgrade directory with the reserved name:</value>
+  </data>
+  <data name="ProviderFactory" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\ProviderFactory.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="StatusCreatingDatabase" xml:space="preserve">
+    <value>Creating database </value>
+  </data>
+  <data name="StatusDroppingDatabase" xml:space="preserve">
+    <value>Dropping database </value>
+  </data>
+  <data name="StatusError" xml:space="preserve">
+    <value>Error.</value>
+  </data>
+  <data name="StatusErrorComp" xml:space="preserve">
+    <value>Completed with </value>
+  </data>
+  <data name="StatusErrorWith" xml:space="preserve">
+    <value> errors.</value>
+  </data>
+  <data name="StatusExecutingScript" xml:space="preserve">
+    <value>Executing script: </value>
+  </data>
+  <data name="StatusInstallingDatabase" xml:space="preserve">
+    <value>Installing database </value>
+  </data>
+  <data name="StatusOnSeparator" xml:space="preserve">
+    <value> on </value>
+  </data>
+  <data name="StatusSuccess" xml:space="preserve">
+    <value>Completed successfully.</value>
+  </data>
+  <data name="StatusUpgradingDatabase" xml:space="preserve">
+    <value>Upgrading Database to version </value>
+  </data>
+  <data name="WarningGeneric" xml:space="preserve">
+    <value>sqlinstaller : warning : {0}</value>
+  </data>
+  <data name="WarnMissingInstall" xml:space="preserve">
+    <value>Missing Install directory. An empty database was created.</value>
+  </data>
+  <data name="WarnMissingReq" xml:space="preserve">
+    <value>Missing required parameter.</value>
+  </data>
+  <data name="WarnMissingScriptDir" xml:space="preserve">
+    <value>Script directory is missing:</value>
+  </data>
+  <data name="WarnMissingUpgrade" xml:space="preserve">
+    <value>Missing Upgrade directory. Nothing to do.</value>
+  </data>
+  <data name="WarnMissingVersions" xml:space="preserve">
+    <value>No version directories found. Nothing to do.</value>
+  </data>
+  <data name="WarnNoNewScripts" xml:space="preserve">
+    <value>No new scripts found. Nothing to do.</value>
+  </data>
+  <data name="WarnNoScripts" xml:space="preserve">
+    <value>No scripts found. An empty database was created.</value>
+  </data>
+</root>

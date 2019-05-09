@@ -1,13 +1,14 @@
 # SQL Installer.NET
 
-> __Install the official NuGet Package here:__ [SQL Installer.NET](https://www.nuget.org/packages/SQLInstaller.NET/)
+> __Install the official NuGet Package here:__ [SQL Installer](https://www.nuget.org/packages/JobTech.SqlInstaller/)
 
-__SQL Installer.NET__ is a toolset which assists in the _development, deployment, and maintenance_ of applications which interface 
+> __The deprecated version (.NET full only) is still available here:__ [Old SQL Installer.NET](https://www.nuget.org/packages/SQLInstaller.NET/)
+
+__SQL Installer__ is a toolset which assists in the _development, deployment, and maintenance_ of applications which interface 
 with a relational database management system (RDBMS). It supports a wide range of RDBMS products including: 
 
 * Microsoft SQL Server (i.e. Azure)
 * Oracle 
-* IBM DB2 
 * PostGreSQL 
 * Firebird SQL  
 * MySQL
@@ -32,20 +33,22 @@ with a relational database management system (RDBMS). It supports a wide range o
 
 # Chapter 1 – Development
 
-First, you should break down your database into its component pieces (tables, views, etc.) and place them into your source code repository. 
-The preferred breakdown is a file-per-object. You wouldn't create one large C# source file with all of your classes would you? Most development 
-teams understand this process. In my view that’s not good enough. You should also have a method of building out your databases using the 
-_source_ SQL scripts (DDL, DML) that now reside in your source control repository – just like you would build your regular source code into an 
-assembly or executable on a build server. The goal is to make the creation of your databases consistent, deterministic, and repeatable. 
-The _SQL Installer.NET_ toolset employs a fairly straightforward ‘file structure’ based processing algorithm to ensure that you meet these goals. 
+The first step is to separate your scripts that create database objects (tables, views, etc.) and place them into your source code repository. 
+The preferred breakdown is a file-per-object. You wouldn't create one large C# source file with all of your classes would you?  
 
-> There’s nothing special about the structure. It simply establishes the convention by which SQL Installer.NET will operate. 
+Next you will need a method of building out your databases using these _source_ SQL scripts (DDL, DML) that now reside in your source control 
+repository – just like you would build your regular source code into an assembly or executable on a build server. The goal is to make the creation 
+of your databases consistent, deterministic, and repeatable. 
 
-## Script Folder Layout
+This tool employs a fairly straightforward ‘file structure’ based processing algorithm to ensure that you meet these goals. 
 
-The Upgrade folder contains scripts necessary to upgrade a database from version to version. Subsequent runs of the command line utility would 
-recognize that there is an existing database and execute the scripts in each ‘Upgrade’ folder starting after the current release and ending with the 
-last folder which would become the current release (03.00 in the example here):
+> There’s nothing special about the structure. It simply establishes the convention by which SQL Installer will operate. 
+
+## Script Folder Layout (example)
+
+The Upgrade folder (default name) contains scripts necessary to upgrade a database from version to version. Subsequent runs of the command line 
+utility would recognize that there is an existing database and execute the scripts in each ‘Upgrade’ folder starting after the current release 
+and ending with the last folder which would become the current release (03.00 in the example here):
 
 * __Upgrade__
    * 01.00
@@ -53,10 +56,10 @@ last folder which would become the current release (03.00 in the example here):
    * 02.10
    * 03.00
 
-> Once the database is broken down into its separate pieces each in their own source file and into the hierarchy as illustrated, you would then 
-> check these into source control.
+> Once the database objets are seperated out such that each has its own source file and placed into the hierarchy as illustrated, you would then 
+> check these into source control and add a build step to call the SQL Installer tool to build out the database in conjunction with other source.
 
-## Script Extensions
+## Script Extensions (default)
 
 1. PreInstall.sql  - Any prerequisites (e.g. types, defaults, users)
 2. Table.sql
@@ -67,12 +70,12 @@ last folder which would become the current release (03.00 in the example here):
 7. PostInstall.sql - Anything needed post installation (e.g. bootstrap data)
 8. ForeignKey.sql
 
-> _SQL Installer.NET_ uses a default naming convention to differentiate between the different types of SQL objects (which can be overridden)
+> _SQL Installer_ uses this default naming convention to differentiate between the different types of SQL objects (which can be overridden)
  
 ## Script Formatting
 
-Aside from the aforementioned file naming conventions imposed by _SQL Installer.NET_, the database developer should be free to author SQL scripts 
-as they do normally (e.g. comments, spacing/tabs, etc). However, for the _Oracle_ and _IBM DB2_ providers, there is a special exception. 
+Aside from the aforementioned file naming conventions imposed by _SQL Installer_, the database developer should be free to author SQL scripts 
+as they do normally (e.g. comments, spacing/tabs, etc). However, for the _Oracle_ provider, there is a special exception. 
 When scripting stored procedures (or anonymous blocks) a special terminating character is required to differentiate between the end of the procedure 
 and individual statements. You must use a forward slash (/) to indicate the end of a procedure/block. For example:
 
@@ -98,29 +101,30 @@ END;
 /
 ```
 
-> __Note:__ For the Oracle and DB2 providers only, the forward slash (/) must be at the end of the line or by itself on a separate line
+> __Note:__ For the Oracle provider only, the forward slash (/) must be at the end of the line or by itself on a separate line
 
 ## Database vs User/Schema
 
-Every attempt was made in the design of SQL Installer.NET to provide a consistent implementation across all data providers. However, 
-there is an issue which could not be avoided - how the provider itself defines a 'database'. _Oracle_, for example, has the concept of 
-an _instance_ but does not further segregate that instance into _databases_. The _IBM DB2_ provider has both an _instance_ as well as 
-a _database_ however it is not possible to create a _database_ from a true client connection. Both the Oracle instance and/or a DB2 database 
-must be setup prior to SQL Installer.NET execution. For these two providers, what you would configure in SQL Installer.NET as a _database_ is 
-really a _schema_ (for Oracle it is both user and schema). All other providers which are included with SQL Installer.NET have the concept 
-of a database which is analogous to a SQL Installer.NET database.
+Every attempt was made in the design of SQL Installer to provide a consistent implementation across all data providers. However, 
+there is an issue which could not be avoided - how the provider itself defines a 'database'. _Oracle_ has the concept of 
+an _instance_ but does not further segregate that instance into _databases_. Therefore, the Oracle instance 
+must be setup prior to SQL Installer execution. What you would configure in SQL Installer as a _database_ is 
+really a _schema_ (for Oracle it is both user and schema). All other providers which are included with SQL Installer have the concept 
+of a database which is analogous to a SQL Installer database.
 
 # Chapter 2 – Running
 
-How you would use the SQLInstaller.NET tools depends on both whether you are in development or production/deployment mode and whether you 
-would be creating a new database (Install) or migrating an existing database (Upgrade).  
+Once the script directory tree is located on the target machine, you will logon locally and open a command prompt or
+add a pre-post build command in Visual Studio. Note that the path to .nuget may differ between environments. For example:  
 
-Once the script directory tree is located on the target machine, you will logon locally and open a command prompt. The command line syntax is as follows:
+> __Visual Studio / Windows (pre-post build)__  
+> dotnet "$(USERPROFILE)\.nuget\packages\jobtech.sqlinstaller\2.0.1\tools\netcoreapp2.2\SqlInstaller.dll" "$(ProjectDir)\sqlinstaller.$(Configuration).xml" 
 
-> SQLInstaller.exe _optional_path_to_xml_file_ _optional command-line parameters_
+> __Command Line MacOS or Linux__  
+> dotnet ${env:Home}/.nuget/packages/jobtech.sqlinstaller/2.0.1/tools/netcoreapp2.2/SqlInstaller.dll  
 
-The command line utility is driven either through a special XML file or through command-line parameters or a combination of both XML file 
-and command-line parameters. By default it will look for a file called _SQLInstaller.xml_ in the current working directory. You can specify 
+During execution, the tool obtains its parameters through a special XML file or through command-line options or a combination of both XML file 
+and command-line options. By default it will look for a file called _sqlinstaller.xml_ in the current working directory. You can specify 
 all parameters on the command line and forego the need for the XML file completely. If the XML file is present and you specify command-line 
 parameters, then the command-line parameters will override any values present in the XML file. 
 
@@ -143,16 +147,20 @@ will first attempt to determine the database version and report that the databas
 
 ## Upgrade
 
-The upgrade process starts just like the install process. The SQLInstaller.NET command line utility will recognize that the database already exists, 
+The upgrade process starts just like the install process. The tool will recognize that the database already exists, 
 scan the Upgrade folder for releases, and prompt you to upgrade (assuming the database is not already at the current release). 
 
 # Appendix A: Configuration File Reference
 ----
 ```xml
-<Parameters Options="Create Drop Verbose ExitCode" IsProtected="false" NoPrompt="false" 
-ScriptExtension="sql" InstallPath="Install" UpgradePath="Upgrade">
+<Parameters Options="Create Drop Verbose ExitCode" IsProtected="false" NoPrompt="false" ScriptExtension="sql" InstallPath="Install" UpgradePath="Upgrade">
    <Database>DATABASE_NAME</Database>
-   <Provider Name="SqlServer|Azure|Oracle|PostGres|DB2|FireBird|MySQL|SQLite|Teradata" />
+   <Provider Name="SqlServer|Azure|Oracle|PostGres|FireBird|MySQL|SQLite|Teradata">
+   		<Scripts>
+			<Script Type="Exists|Drop|Create|GetVersion|SetVersion">
+			</Script>
+		</Scripts>
+   </Provider>
    <ConnectionString>Data Source=dbsrv;Integrated Security=SSPI</ConnectionString>
    <FileTypes>
       <FileType Name="Table" Description="TABLES" IsDisabled="false" IsGlobal="false" HaltOnError="false"/>
@@ -160,27 +168,30 @@ ScriptExtension="sql" InstallPath="Install" UpgradePath="Upgrade">
 </Parameters>
 ```
 
-__Options__ - specify which options are in effect.
-* Create – create database if it does not exist
-* Drop – drop database if it exists
-* Retry – retry the last upgrade
-* Verbose – output all status messages
-* ExitCode - sets the process exit code (errorLevel) for SQL errors 
+__Options__ - specify which options are in effect.  
+* Create – create database if it does not exist.  
+* Drop – drop database if it exists.  
+* Retry – retry the last upgrade.  
+* Verbose – output all status messages.  
+* ExitCode - sets the process exit code (errorLevel) for SQL errors.  
 
-* __IsProtected__ - specify whether or not the ConnectionString property has been encrypted
-* __NoPrompt__ - do not prompt user to upgrade (automatically approve)
-* __ScriptExtension__ - The file extension used for your script files
-* __InstallPath__ - The root path (relative to this file) where the install scripts are located
-* __UpgradePath__ - The root path (relative to this file) where the upgrade scripts are located
-* __Database__ - name of the database to install/upgrade
-* __Provider__ – Set _Name_ attribute to one of standard or custom data providers: __SqlServer|Oracle|PostGres|DB2|FireBird|MySQL|SQLite|Teradata__
-* __ConnectionString__ – ADO.NET connection string
+__IsProtected__ - specify whether or not the ConnectionString property has been encrypted.  
+__NoPrompt__ - do not prompt user to upgrade (automatically approve).  
+__ScriptExtension__ - The file extension used for your script files.  
+__InstallPath__ - The root path (relative to this file) where the install scripts are located.  
+__UpgradePath__ - The root path (relative to this file) where the upgrade scripts are located.  
 
-* __FileTypes__ – A list of file types to process
-* __Name__ - The root name of the file type. This is used in conjunction with the ScriptExtension attribute to construct a search filter
-* __IsDisabled__ - Toggles processing of these file types on and off.
-* __IsGlobal__ - Run scripts in the global database context
-* __HaltOnError__ - Exit completely if any error occurs 
+__Database__ - name of the database to install/upgrade.  
+__Provider__ – Set _Name_ attribute to one of standard or custom data providers.  
+* Scripts - Use this section to override the scripts used to manage the overall database (e.g. Create). See Appendix B.  
+
+__ConnectionString__ – ADO.NET connection string.  
+
+__FileTypes__ – A list of file types to process.  
+* Name - The root name of the file type. This is used in conjunction with the ScriptExtension attribute to construct a search filter.  
+* IsDisabled - Toggles processing of these file types on and off.  
+* IsGlobal - Run scripts in the global database context.  
+* HaltOnError - Exit completely if any error occurs.  
 
 # Appendix B: Adding/Customizing Data Providers
 ----

@@ -2,11 +2,9 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/SQLInstaller.Console/bin
-/SQLInstaller.Console/obj/Debug
-/SQLInstaller.Core/bin/Debug
-/SQLInstaller.Core/obj/Debug
-/.vs/SQL Installer.NET/v14
-/SQLInstaller.Console/obj/Release
-/SQLInstaller.Core/bin/Release
-/SQLInstaller.Core/obj/Release
+*.suo
+/.vs
+/SqlInstaller/bin
+/SqlInstaller/obj
+/SqlInstaller/JobTech.SqlInstaller.csproj.user
+*.user
