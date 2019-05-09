@@ -115,13 +115,13 @@ of a database which is analogous to a SQL Installer database.
 # Chapter 2 – Running
 
 Once the script directory tree is located on the target machine, you will logon locally and open a command prompt or
-add a pre-post build command in Visual Studio. Note that the path to .nuget may differ between environments. For example:  
+add a pre-post build command in your IDE (e.g. Visual Studio). __Note__ that the path to .nuget may differ between environments. For example:  
 
 > __Visual Studio / Windows (pre-post build)__  
 > dotnet "$(USERPROFILE)\.nuget\packages\jobtech.sqlinstaller\2.0.1\tools\netcoreapp2.2\SqlInstaller.dll" "$(ProjectDir)\sqlinstaller.$(Configuration).xml" 
 
 > __Command Line MacOS or Linux__  
-> dotnet ${env:Home}/.nuget/packages/jobtech.sqlinstaller/2.0.1/tools/netcoreapp2.2/SqlInstaller.dll  
+> dotnet ~/.nuget/packages/jobtech.sqlinstaller/2.0.1/tools/netcoreapp2.2/SqlInstaller.dll /d=MyDatabase /conn="$CONNECTIONSTRING"
 
 During execution, the tool obtains its parameters through a special XML file or through command-line options or a combination of both XML file 
 and command-line options. By default it will look for a file called _sqlinstaller.xml_ in the current working directory. You can specify 
@@ -141,14 +141,18 @@ parameters, then the command-line parameters will override any values present in
 
 ## Install
 
-During development, you can add the Drop option to always drop the database beforehand. This will ensure that you have a complete refresh of 
-the database from source. Obviously, for a production install you would not want to drop the existing database. In this case, the utility 
-will first attempt to determine the database version and report that the database already exists at a given version and exit. 
+During development, you can add the __Drop__ option to always drop the database beforehand. This will ensure that you have a complete refresh of 
+the database from source. For a production install you would remove the __Drop__ option to ensure any existing database is kept in place. If the
+database does not exist the install will continue. Otherwise, the tool will perform an __Upgrade__.
 
 ## Upgrade
 
-The upgrade process starts just like the install process. The tool will recognize that the database already exists, 
-scan the Upgrade folder for releases, and prompt you to upgrade (assuming the database is not already at the current release). 
+If SQL Installer detects an existing database, and the __Drop__ option is not set, it will scan the Upgrade folder for releases, report back the
+current database version, and optionally prompt you to upgrade (if necessary and the /NoPrompt parameter is either missing or set to false).  
+
+> __Note__ that it is recommended to have just an Upgrade folder and no seperate Install folder. In this case (no Install folder) it would simply 
+> perform all the upgrades in order cycling through Upgrade folder and its children. Having a seperate Install folder (path) can be helpful in cases 
+> where you need to have a 'clean' install of the latest version rather than perform each upgrade (which may have complex and long running commands).
 
 # Appendix A: Configuration File Reference
 ----
@@ -182,7 +186,7 @@ __InstallPath__ - The root path (relative to this file) where the install script
 __UpgradePath__ - The root path (relative to this file) where the upgrade scripts are located.  
 
 __Database__ - name of the database to install/upgrade.  
-__Provider__ – Set _Name_ attribute to one of standard or custom data providers.  
+__Provider__ – Set _Name_ attribute to one of standard data providers.  
 * Scripts - Use this section to override the scripts used to manage the overall database (e.g. Create). See Appendix B.  
 
 __ConnectionString__ – ADO.NET connection string.  
@@ -201,8 +205,7 @@ __FileTypes__ – A list of file types to process.
 <ProviderFactory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="ProviderFactory">
    <!--
    The ProviderFactory configuration XML is used by SQL Installer to control interaction
-   with the underlying ADO.NET data provider. This file is an embedded resource within the
-   binary. However, you can override these per installation using a custom sqlinstaller.xml file. 
+   with the underlying ADO.NET data provider. You can override any of these settings within your own sqlinstaller.xml file. 
    There are five scripts that you can customize:
    
    1.   Exists: checks to see if the target database already exists. Will replace {0} 
@@ -217,10 +220,6 @@ __FileTypes__ – A list of file types to process.
       database name.
    5.   SetVersion: sets the version information. Will replace {0} with the 
       database name, {1} with the version, and {2} with the user running the install.
-      
-   The Provider element is the same Provider used within the sqlnstaller.xml config file.
-   You can override any or all of the Provider elements/attributes within this file. These
-   will be merged back with the global ProviderFactory xml at runtime.
    -->
    <Providers>
       <!--
