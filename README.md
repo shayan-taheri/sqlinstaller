@@ -1,4 +1,4 @@
-# SQL Installer.NET
+# SQL Installer
 
 > __Install the official NuGet Package here:__ [SQL Installer](https://www.nuget.org/packages/JobTech.SqlInstaller/)
 
@@ -134,7 +134,7 @@ parameters, then the command-line parameters will override any values present in
 * /FileTypes| /f - A comma separated list of the name and order of file types used during execution (e.g. /f="Table,View,StoredProcedure")
 * /NoPrompt | /nop - Do not prompt for upgrade
 * /Options | /o - Runtime options (see configuration file reference below for values) (e.g. /o="Retry,Verbose")
-* /Provider | /p - The data provider to use (SqlServer,Oracle,PostGres,DB2,FireBird,MySQL,SQLite,Teradata) (e.g. /p=Oracle)
+* /Provider | /p - The data provider to use (SqlServer,Oracle,PostGres,FireBird,MySQL,SQLite,Teradata) (e.g. /p=Oracle)
 * /ScriptExtension | /ext - The extension to use for the SQL scripts (defaults to sql) (e.g. /ext=txt)
 * /UpgradePath | /upg - The relative path to the directory containing the upgrade scripts (e.g. /upg="..\Upgrade")
 * /WriteConfig | /w - Writes the configuration values to the XML file
@@ -200,14 +200,13 @@ __FileTypes__ – A list of file types to process.
 <?xml version="1.0" encoding="utf-8"?>
 <ProviderFactory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="ProviderFactory">
    <!--
-   The ProviderFactory configuration XML is used by SQL Installer.NET to control interaction
+   The ProviderFactory configuration XML is used by SQL Installer to control interaction
    with the underlying ADO.NET data provider. This file is an embedded resource within the
-   binary. However, if you rename the ProviderFactory.xml.orig (remove orig) found within
-   the SQL Installer.NET installation folder, you can customize these per installation. 
+   binary. However, you can override these per installation using a custom sqlinstaller.xml file. 
    There are five scripts that you can customize:
    
    1.   Exists: checks to see if the target database already exists. Will replace {0} 
-      with the database name passed in from the configuration (SQLInstaller.xml). 
+      with the database name passed in from the configuration (sqlnstaller.xml). 
       Simply return a numeric value greater than zero if the database exists. 
       Note: for Oracle you will check for a USER account.
    2.   Drop: drops the target database (or USER if Oracle). Will replace {0} with the
@@ -219,13 +218,9 @@ __FileTypes__ – A list of file types to process.
    5.   SetVersion: sets the version information. Will replace {0} with the 
       database name, {1} with the version, and {2} with the user running the install.
       
-   The Provider element is the same Provider used within the SQLInstaller.xml config file.
-   You can override any or all of the Provider elements/attributes within SQLInstaller.xml. These
+   The Provider element is the same Provider used within the sqlnstaller.xml config file.
+   You can override any or all of the Provider elements/attributes within this file. These
    will be merged back with the global ProviderFactory xml at runtime.
-   
-   You may also define your own provider within either the ProviderFactory.xml file or within
-   each of your SQLInstaller.xml configuration files respectively. This allows you to add
-   support for other ADO.NET data providers as necessary.
    -->
    <Providers>
       <!--
@@ -233,7 +228,7 @@ __FileTypes__ – A list of file types to process.
       factory configuration by opening the ProviderFactory.xml.orig file found within the installation
       folder.
       -->
-      <Provider Name="PostGres" InvariantName="Npgsql">
+      <Provider Name="PostGres">
          <Scripts>
             <Script Type="Exists">SELECT COUNT(*) FROM pg_catalog.pg_database WHERE datname = '{0}'</Script>
             <Script Type="Drop">DROP DATABASE {0}</Script>
